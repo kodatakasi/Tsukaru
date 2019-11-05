@@ -29,13 +29,18 @@ Rails 5.2.3
 - 検索機能
   - 温泉池の場所を泉質で検索できる
   - ユーザーの投稿を検索できる
+  - ラベルで温泉地を検索できる
 - 宿泊ガイド機能
   - 宿泊ガイドが表示される
+- ラベル機能
+  - 温泉地にラベルが貼れる
 
 # カタログ設計
 https://docs.google.com/spreadsheets/d/1nu9Homub02-gxALajiWC8zfkjrg_cSWcxB0mhHRS79g/edit#gid=0
 # テーブル定義
 https://docs.google.com/spreadsheets/d/1nu9Homub02-gxALajiWC8zfkjrg_cSWcxB0mhHRS79g/edit#gid=1928497795
+# ER図
+https://docs.google.com/spreadsheets/d/1nu9Homub02-gxALajiWC8zfkjrg_cSWcxB0mhHRS79g/edit#gid=455075873
 # 画面遷移図
 https://docs.google.com/spreadsheets/d/1nu9Homub02-gxALajiWC8zfkjrg_cSWcxB0mhHRS79g/edit#gid=1415860087
 # 画面ワイヤーフレーム
