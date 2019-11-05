@@ -13,6 +13,8 @@ Rails 5.2.3
     - メールアドレス、名前、パスワードは必須
   - ログイン機能
     - メールアドレス、パスワードでログインできる
+    - facebook id でログインできる
+    - line id でログインできる
   - コンテンツ投稿機能
     - コンテンツの一覧を表示できる
     - 画像、テキストが投稿できる
@@ -41,6 +43,9 @@ https://docs.google.com/spreadsheets/d/1nu9Homub02-gxALajiWC8zfkjrg_cSWcxB0mhHRS
 # 使用予定Gem
 - ログイン機能
   - devise
+  - omniauth
+  - omniauth-facebook
+  - omniauth-line
 - 画像編集機能
   - carrierwave
   - mini_magic
