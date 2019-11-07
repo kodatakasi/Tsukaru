@@ -14,7 +14,7 @@
   <tr>
     <td><%= article.title %></td>
     <td><%= article.content %></td>
-    <td><%= article.image%></td>
+    <td><%= image_tag article.image.url%></td>
     <td><%= link_to '詳細を確認する', article_path(article.id) %></td>
     <td><%= link_to "編集する", edit_article_path(article.id) %></td>
   </tr>
