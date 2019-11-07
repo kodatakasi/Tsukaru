@@ -1,23 +1,38 @@
-<h1>記事一覧</h1>
+<div class="main columns">
+  <p><%= notice %></p>
 
-<p><%= notice %></p>
+  <div class="left-nav column">
+    <h2>ユーザー情報</h2>
+    <%= link_to '新規投稿', new_article_path %>
+  </div>
 
-<table>
-  <tr>
-    <th>タイトル</th>
-    <th>内容</th>
-    <th>写真</th>
-    <th></th>
-  </tr>
+  <div class="main-contents column">
+    <h2>記事一覧</h2>
+      <table class="table">
+        <% @articles.each do |article| %>
+          <tr class="box">
+            <td><%= article.title %></td>
+            <td><%= image_tag article.image.url%></td>
+            <td><%= article.content %></td>
+            <td><%= link_to '詳細を確認する', article_path(article.id) %></td>
+            <td><%= link_to "編集する", edit_article_path(article.id) %></td>
+          </tr>
+        <% end %>
+      </table>
+  </div>
 
-<% @articles.each do |article| %>
-  <tr>
-    <td><%= article.title %></td>
-    <td><%= article.content %></td>
-    <td><%= image_tag article.image.url%></td>
-    <td><%= link_to '詳細を確認する', article_path(article.id) %></td>
-    <td><%= link_to "編集する", edit_article_path(article.id) %></td>
-  </tr>
-<% end %>
-</table>
-<%= link_to '新規投稿', new_article_path %>
+  <div class="right-nav column">
+    <h2>宿泊情報</h2>
+    <p>右側</p>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="content has-text-centered">
+    <p>
+      <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed
+      <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+      is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+    </p>
+</footer>
+</div>

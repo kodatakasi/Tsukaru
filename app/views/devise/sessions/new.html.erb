@@ -1,15 +1,18 @@
-<div class="container">
-<h2>Log in</h2>
+<div class="columns is-centered">
+<div class="column is-half has-background-light">
+<h2>ログイン</h2><br>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
+  <div class="field" >
+    <div class="controll">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input is-small is-rounded", placeholder: "Email" %>
+    </div>
   </div>
 
   <div class="field">
     <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
+    <%= f.password_field :password, autocomplete: "current-password", class: "input is-small is-rounded", placeholder: "Password" %>
   </div>
 
   <% if devise_mapping.rememberable? %>
@@ -26,4 +29,5 @@
 
 <%= render "devise/shared/links" %>
 
+</div>
 </div>
