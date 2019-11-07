@@ -1,0 +1,8 @@
+<h1>詳細画面</h1>
+<p>タイトル: <%= @article.title %></p>
+<p>内容: <%= @article.content %></p>
+<p>写真: <%= @article.image %></p>
+
+<%= link_to '新規投稿', new_article_path %>
+<%= link_to '一覧ページ', articles_path %>
+<%= link_to '投稿を削除する', article_path(@article.id), method: :delete, data: { confirm: '本当に削除していいですか？' }  %>

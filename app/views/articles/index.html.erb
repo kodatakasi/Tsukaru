@@ -1,0 +1,23 @@
+<h1>記事一覧</h1>
+
+<p><%= notice %></p>
+
+<table>
+  <tr>
+    <th>タイトル</th>
+    <th>内容</th>
+    <th>写真</th>
+    <th></th>
+  </tr>
+
+<% @articles.each do |article| %>
+  <tr>
+    <td><%= article.title %></td>
+    <td><%= article.content %></td>
+    <td><%= article.image%></td>
+    <td><%= link_to '詳細を確認する', article_path(article.id) %></td>
+    <td><%= link_to "編集する", edit_article_path(article.id) %></td>
+  </tr>
+<% end %>
+</table>
+<%= link_to '新規投稿', new_article_path %>
