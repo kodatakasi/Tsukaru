@@ -4,10 +4,12 @@
     <div class="box">
     <% if user_signed_in? %>
       <figure class="image is-96x96">
-          <%# <%= image_tag current_user.image, class: 'image is-rounded'%> %>
+          <%= image_tag current_user.image, class: 'image is-rounded'%>
         </figure>
         <p><%= current_user.name %></p>
         <p><%= current_user.email %></p>
+        <%= link_to 'プロフィール', user_path(current_user) %>
+        <%= link_to '新規投稿', new_article_path %>
       <% else %>
         <figure class="image is-96x96">
         <%= image_tag 'blank-profile-picture-973460__480.png', class: 'image is-rounded'%>
@@ -15,7 +17,6 @@
         <p>ユーザー名</p>
         <p>自己紹介コメント</p>
       <% end %>
-      <%= link_to '新規投稿', new_article_path %>
     </div>
   </div>
 
