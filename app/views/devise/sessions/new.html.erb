@@ -2,7 +2,7 @@
 <div class="column is-half has-background-light">
 <h2>ログイン</h2><br>
 
-<%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field" >
     <div class="controll">
       <%= f.label :email %><br />
