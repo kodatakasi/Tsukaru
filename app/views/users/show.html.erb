@@ -1,4 +1,11 @@
 <h1>Users#show</h1>
 <p>Find me in app/views/users/show.html.erb</p>
-<p>MyPage <%= @user.name %></p>
+< <% @user.each do |user| %>
+      <tr>
+        <td><%= image_tag user.image.to_s %></td>
+      </tr>
+ <% end %>
+
+<%= link_to 'プロフィール編集', edit_user_path%>
+
 <%= link_to '投稿一覧', articles_path%>
