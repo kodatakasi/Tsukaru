@@ -7,9 +7,10 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update
+    if @user.update(user_params)
+      redirect_to user_path, notice: 'プロフィール編集しました！'
     else
-      render :show
+      render :edit
     end
   end
 

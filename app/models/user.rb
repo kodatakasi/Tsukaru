@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   # mount_uploader :image, ImageUploader
+  has_one_attached :image
   validates :name, presence: true, length: { maximum: 30 }
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
