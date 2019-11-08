@@ -1,21 +1,28 @@
-<h1>プロフィール編集</h1>
-<%= form_with(model: @user, local: true) do |form| %>
+<div class="columns is-centered">
+<div class="column is-half has-background-light">
+    <h1>プロフィール編集</h1>
+    <%= form_with(model: @user, local: true) do |form| %>
 
-  <div class="user_name">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+      <div class="field">
+    <%= form.label :ユーザーネーム %><br />
+    <%= form.text_field :name, class: "input is-small is-rounded", placeholder: "Username" %>
   </div>
 
-  <div class="user_email">
-    <%= form.label :email %>
-    <%= form.text_field :email %>
+      <div class="field">
+    <%= form.label :email %><br />
+    <%= form.email_field :email, autofocus: true, autocomplete: "email", class: "input is-small is-rounded", placeholder: "Email" %>
   </div>
 
-  <div class="user_profile_image">
-    <%= form.label :image %>
-    <%= form.file_field :image %>
-  </div>
-    <%= form.submit %>
-<% end %>
+      <div class="file">
+        <%= form.label :image, class: "file-label" %>
+        <%= form.file_field :image%>
+      </div>
 
-<%= link_to '投稿一覧', articles_path%>
+      
+        <%= form.submit class: "button is-info is-light" %>
+    <% end %>
+
+    <%= link_to '投稿一覧', articles_path, class: "button is-info is-light" %>
+
+  </div>
+</div>

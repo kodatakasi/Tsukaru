@@ -6,13 +6,13 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input is-small is-rounded", placeholder: "Email" %>
+    <%= f.label :ユーザーネーム %><br />
+    <%= f.text_field :name, class: "input is-small is-rounded", placeholder: "Username" %>
   </div>
 
   <div class="field">
-    <%= f.label :ユーザーネーム %><br />
-    <%= f.text_field :name, class: "input is-small is-rounded", placeholder: "Username" %>
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input is-small is-rounded", placeholder: "Email" %>
   </div>
 
   <div class="field">
