@@ -1,12 +1,25 @@
 <div class="main columns">
-  <p><%= notice %></p>
 
   <div class="left-nav column">
-    <h2>ユーザー情報</h2>
-    <%= link_to '新規投稿', new_article_path %>
+    <div class="box">
+    <% if user_signed_in? %>
+      <figure class="image is-96x96">
+          <%# <%= image_tag current_user.image, class: 'image is-rounded'%> %>
+        </figure>
+        <p>current_user.name</p>
+        <p>自己紹介コメントcurrent_user.email</p>
+      <% else %>
+        <figure class="image is-96x96">
+        <%= image_tag 'blank-profile-picture-973460__480.png', class: 'image is-rounded'%>
+        </figure>
+        <p>ユーザー名</p>
+        <p>自己紹介コメント</p>
+      <% end %>
+      <%= link_to '新規投稿', new_article_path %>
+    </div>
   </div>
 
-  <div class="main-contents column">
+  <div class="main-contents column is-three-fifths">
     <h2>記事一覧</h2>
       <table class="table">
         <% @articles.each do |article| %>
@@ -22,8 +35,10 @@
   </div>
 
   <div class="right-nav column">
-    <h2>宿泊情報</h2>
-    <p>右側</p>
+    <div class="box">
+      <h2>宿泊情報</h2>
+      <p>楽天トラベルapi実装予定</p>
+    </div>
   </div>
 </div>
 
