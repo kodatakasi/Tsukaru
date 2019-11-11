@@ -11,17 +11,17 @@
     </div>
   <% end %>
 
-  <div class="article_title">
+  <div class="article_title control">
     <%= form.label :title %>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, class: "input", placeholder: "タイトル" %>
   </div>
   <div class="article_image">
     <%= form.label :picture %>
     <%= form.file_field :picture %>
   </div>
-  <div class="article_content">
+  <div class="article_content control">
     <%= form.label :content %>
-    <%= form.text_field :content %>
+    <%= form.text_area :content ,class: "textarea", placeholder: "温泉体験", rows: "10" %>
   </div>
   <%= form.submit %>
 <% end %>

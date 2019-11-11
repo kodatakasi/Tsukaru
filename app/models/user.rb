@@ -1,25 +1,22 @@
 class User < ApplicationRecord
-  # mount_uploader :image, ImageUploader
   has_one_attached :image
+  has_many :articles
   validates :name, presence: true, length: { maximum: 30 }
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable
 
-  def self.find_for_facebook_oauth(auth)
-  user = User.where(provider: auth.provider, uid: auth.uid).first
-
-    unless user
-      user = User.create( name:     auth.extra.raw_info.name,
-                          provider: auth.provider,
-                          uid:      auth.uid,
-                          email:    auth.info.email,
-                          token:    auth.credentials.token,
-                          password: Devise.friendly_token[0,20] )
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.name = auth.name
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0, 20] # ランダムなパスワードを作成
+      # user.image = auth.info.image.gsub("_normal","") if user.provider == "twitter"
+      user.image = auth.info.image.gsub("picture","picture?type=large") if user.provider == "facebook"
     end
-
-    return user
   end
 
   private

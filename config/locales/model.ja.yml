@@ -1,12 +1,13 @@
 a:
   activerecord:
     models:
-      blog: "ブログ"
+      article: "投稿"
       user: "ユーザー"
     attributes:
-      blog:
+      article:
         title: "タイトル"
         content: "内容"
+        user_id: "投稿者"
       contact:
         name: "名前"
         email: "メールアドレス"

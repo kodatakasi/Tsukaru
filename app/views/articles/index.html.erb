@@ -1,54 +1,28 @@
 <div class="main columns">
 
-  <div class="left-nav column">
-    <div class="box">
-    <% if user_signed_in? %>
-      <figure class="image is-96x96">
-        <%= image_tag(current_user.image, width: 96, class: 'image is-rounded') if current_user.image.attached? %>
-      </figure>
-        <p><%= current_user.name %></p>
-        <p><%= current_user.email %></p>
-        <%= link_to 'プロフィール', user_path(current_user) %>
-        <%= link_to '新規投稿', new_article_path %>
-      <% else %>
-        <figure class="image is-96x96">
-          <%= image_tag 'blank-profile-picture-973460__480.png', class: 'image is-rounded'%>
-        </figure>
-        <p>ユーザー名</p>
-        <p>自己紹介コメント</p>
-      <% end %>
-    </div>
-  </div>
+  <%= render 'left_nav' %>
 
   <div class="main-contents column is-three-fifths">
     <h2>記事一覧</h2>
       <table class="table">
         <% @articles.each do |article| %>
           <tr class="box">
+            <td><%= article.user.name %></td>
             <td><%= article.title %></td>
-            <td><%= image_tag(article.picture, width: 200) if article.picture.attached? %></td>
+            <td><%= link_to image_tag(article.picture, width: 200), article_path(article) if article.picture.attached? %></td>
             <td><%= article.content %></td>
-            <td><%= link_to '詳細を確認する', article_path(article.id) %></td>
-            <td><%= link_to "編集する", edit_article_path(article.id) %></td>
+            <% if user_signed_in? %>
+              <td><%= link_to '詳細を確認する', article_path(article.id) %></td>
+              <td><%= link_to "編集する", edit_article_path(article.id) %></td>
+            <% end %>
           </tr>
         <% end %>
       </table>
   </div>
 
-  <div class="right-nav column">
-    <div class="box">
-      <h2>宿泊情報</h2>
-      <p>楽天トラベルapi実装予定</p>
-    </div>
-  </div>
-</div>
+<%= render 'right_nav' %>
 
-<footer class="footer">
-  <div class="content has-text-centered">
-    <p>
-      <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed
-      <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
-      is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
-    </p>
-</footer>
+<%= render 'footer' %>
+
+
 </div>

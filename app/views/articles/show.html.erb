@@ -1,8 +1,26 @@
-<h1>詳細画面</h1>
-<p>写真: <%= image_tag(@article.picture, width: 200) if @article.picture.attached? %></p>
-<p>タイトル: <%= @article.title %></p>
-<p>内容: <%= @article.content %></p>
+<div class="main columns">
 
-<%= link_to '新規投稿', new_article_path %>
-<%= link_to '一覧ページ', articles_path %>
-<%= link_to '投稿を削除する', article_path(@article.id), method: :delete, data: { confirm: '本当に削除していいですか？' }  %>
+  <%= render 'left_nav' %>
+
+  <div class="main-contents column is-three-fifths">
+    <div class="box">
+      <h5 class="title is-5">詳細画面</h4>
+
+      <p class="subtitle is-5">タイトル: <%= @article.title %></p>
+      <p class="subtitle is-5">写真: <%= image_tag(@article.picture, width: 680) if @article.picture.attached? %></p>
+      <p class="is-medium">内容: <%= @article.content %></p>
+
+      <%= link_to '一覧ページ', articles_path %>
+      <% if user_signed_in?%>
+        <%= link_to '新規投稿', new_article_path %>
+        <%= link_to '投稿を削除する', article_path(@article.id), method: :delete, data: { confirm: '本当に削除していいですか？' } if @article.user.id == current_user.id %>
+      <% end %>
+
+    </div>
+  </div>
+
+<%= render 'right_nav' %>
+
+<%= render 'footer' %>
+
+</div>
