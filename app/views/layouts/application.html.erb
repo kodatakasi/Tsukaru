@@ -11,36 +11,17 @@
 
   <body>
   <section class="hero is-info">
-  <div class="hero-body">
-    <div class="container">
-      <h1 class="title">
-        Tsukaru
-      </h1>
-      <h2 class="subtitle">
-        Have you ever experienced feel well
-      </h2>
-    </div>
-  </div>
-  </section>
-
-  <section class="hero is-medium has-bg-img">
     <div class="hero-body">
-      <div class="container has-text-centered">
-        <h1 class="title">温泉検索</h1>
-        <h2 class="subtitle">Subtitle 3</h2>
+      <div class="container">
+        <h1 class="title">
+          Tsukaru
+        </h1>
+        <h2 class="subtitle">
+          Have you ever experienced feel well
+        </h2>
       </div>
     </div>
-  </section> 
-
-  <div class="container">
-    <% if user_signed_in? %>
-      <%= link_to "新規投稿", new_article_path %>
-      <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-    <% else %>
-      <%= link_to "新規登録", new_user_registration_path %>
-      <%= link_to "ログイン", new_user_session_path %>
-    <% end %>
-  </div>
+  </section>
 
   <div class="container">
     <% if notice %>
@@ -51,9 +32,7 @@
     <% end %>
   </div>
 
-  <div class="container">
     <%= yield %>
-  </div>
 
   </body>
 </html>

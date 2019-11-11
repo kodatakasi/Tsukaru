@@ -1,26 +1,30 @@
-<div class="main columns">
+<%= render 'hero'%>
+<div class="container">
+  <div class="main columns">
 
-  <%= render 'left_nav' %>
+    <%= render 'left_nav' %>
 
-  <div class="main-contents column is-three-fifths">
-    <h2>記事一覧</h2>
-      <table class="table">
-        <% @articles.each do |article| %>
-          <tr class="box">
-            <td><%= article.user.name %></td>
-            <td><%= article.title %></td>
-            <td><%= link_to image_tag(article.picture, width: 200), article_path(article) if article.picture.attached? %></td>
-            <td><%= article.content %></td>
-            <% if user_signed_in? %>
-              <td><%= link_to '詳細を確認する', article_path(article.id) %></td>
-              <td><%= link_to "編集する", edit_article_path(article.id) %></td>
-            <% end %>
-          </tr>
-        <% end %>
-      </table>
-  </div>
+    <div class="main-contents column is-three-fifths">
+      <%= link_to "記事一覧", articles_path %>
+        <table class="table">
+          <% @articles.each do |article| %>
+            <tr class="box">
+              <td><%= article.user.name %></td>
+              <td><%= article.title %></td>
+              <td><%= link_to image_tag(article.picture, width: 200), article_path(article) if article.picture.attached? %></td>
+              <td><%= article.content %></td>
+              <% if user_signed_in? %>
+                <td><%= link_to '詳細を確認する', article_path(article.id) %></td>
+                <td><%= link_to "編集する", edit_article_path(article.id) %></td>
+              <% end %>
+            </tr>
+          <% end %>
+        </table>
+    </div>
 
-<%= render 'right_nav' %>
+  <%= render 'right_nav' %>
+
+</div>
 
 <%= render 'footer' %>
 

@@ -3,6 +3,8 @@ class ArticlesController < ApplicationController
   # before_action :authenticate_user!, only: %i(new edit update destroy create)
   def index
     @articles = Article.all
+    @articles = current_user.favorite_articles if params[:like].present?
+    @articles = Article.where(user_id: current_user.id) if params[:mine].present?
   end
 
   def new
@@ -19,6 +21,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
+    @favorite = current_user.favorites.find_by(article_id: @article.id)
   end
 
   def edit
