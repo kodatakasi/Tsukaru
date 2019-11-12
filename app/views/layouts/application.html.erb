@@ -9,18 +9,23 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-  <section class="hero is-info">
-    <div class="hero-body">
-      <div class="container">
-        <h1 class="title">
-          Tsukaru
-        </h1>
-        <h2 class="subtitle">
-          Have you ever experienced feel well
-        </h2>
-        <li><%= link_to 'ユーザー一覧', users_path if user_signed_in? %></li>
-        <li><%= link_to "記事一覧", articles_path %></li>
+  <body class="has-background-light">
+    <section class="hero is-info">
+      <div class="hero-body">
+        <div class="container level">
+        <div class="level-left">
+          <ul>
+            <li><h1 class="title">Tsukaru</h1>
+          </li>
+            <li><h2 class="subtitle">Have you ever experienced feel well</h2></li>
+          </ul>
+        </div>
+        <div class="level-right">
+          <ul class="subtitle">
+            <li><%= link_to 'ユーザー一覧', users_path if user_signed_in? %></li>
+            <li><%= link_to "記事一覧", articles_path %></li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
