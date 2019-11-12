@@ -4,25 +4,26 @@
     <%= form_with(model: @user, local: true) do |form| %>
 
       <div class="field">
-    <%= form.label :ユーザーネーム %><br />
-    <%= form.text_field :name, class: "input is-small is-rounded", placeholder: "Username" %>
-  </div>
+        <%= form.label :ユーザーネーム %><br />
+        <%= form.text_field :name, class: "input is-small is-rounded", placeholder: "Username" %>
+      </div>
 
       <div class="field">
-    <%= form.label :email %><br />
-    <%= form.email_field :email, autofocus: true, autocomplete: "email", class: "input is-small is-rounded", placeholder: "Email" %>
-  </div>
+        <%= form.label :email %><br />
+        <%= form.email_field :email, autofocus: true, autocomplete: "email", class: "input is-small is-rounded", placeholder: "Email" %>
+      </div>
 
       <div class="file">
         <%= form.label :image, class: "file-label" %>
         <%= form.file_field :image%>
       </div>
 
-      
-        <%= form.submit class: "button is-info is-light" %>
+      <%= form.submit class: "button is-info is-light" %>
     <% end %>
 
-    <%= link_to '投稿一覧', articles_path, class: "button is-info is-light" %>
+    <%= link_to 'ユーザー情報をを削除する', user_path(@user.id), method: :delete, data: { confirm: '本当に削除していいですか？' } if @user.id == current_user.id %>
+    <br>
+    <%= link_to '投稿一覧', articles_path %>
 
   </div>
 </div>

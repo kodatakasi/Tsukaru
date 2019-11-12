@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-  has_one_attached :image
-  has_many :articles
+  has_one_attached :image, dependent: :destroy
+  has_many :articles, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :favorite_articles, through: :favorites, source: :article
   has_many :active_relationships, class_name:  "Relationship",

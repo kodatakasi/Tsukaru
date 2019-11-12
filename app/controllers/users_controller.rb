@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i(show edit update)
+  before_action :set_user, only: %i(show edit update destroy)
 
   def index
     @users = User.all
@@ -17,6 +17,11 @@ class UsersController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @user.destroy
+    redirect_to articles_path, notice: 'ユーザー情報を削除しました！'
   end
 
   private

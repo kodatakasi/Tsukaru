@@ -9,7 +9,7 @@
         <table class="table">
           <% @articles.each do |article| %>
             <tr class="box">
-              <td class="article-name"><%= article.user.name %></td>
+              <td class="article-name"><%= link_to article.user.name, user_path(article.user) %></td>
               <td class="article-title"><%= article.title %></td>
               <td class="article-images"><%= link_to image_tag(article.picture, width: 200), article_path(article) if article.picture.attached? %></td>
               <% if user_signed_in? %>
