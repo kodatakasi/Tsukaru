@@ -1,0 +1,10 @@
+  <div class="column">
+    <h2>ユーザー</h2>
+    <div class="box">
+      <% @users.each do |user| %>
+        <%= user.name %>
+        <%= user.email %>
+        <%= render 'follow_form', user: user %>
+    <% end %>
+    </div>
+  </div>

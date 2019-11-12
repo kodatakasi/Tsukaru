@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'relationships/create'
+  get 'relationships/destroy'
   get 'users/show'
   root to: 'articles#index'
 
@@ -12,5 +14,7 @@ Rails.application.routes.draw do
 
   resources :users
 
-  resources :favorites, only: [:create, :destroy]
+  resources :favorites, only: %i(create destroy)
+
+  resources :relationships, only: %i(create destroy)
 end

@@ -26,6 +26,7 @@ gem 'ransack'
 gem 'bulma-rails'
 gem 'i18n'
 gem 'dotenv-rails'
+gem 'jquery-rails'
 
 
 group :development, :test do
