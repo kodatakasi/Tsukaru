@@ -18,6 +18,11 @@
         <%= form.file_field :image%>
       </div>
 
+      <div class="field">
+        <%= form.label :プロフィール %><br />
+        <%= form.text_field :profile, class: "textarea is-rounded", placeholder: "Profile" %>
+      </div>
+
       <%= form.submit class: "button is-info is-light" %>
     <% end %>
 

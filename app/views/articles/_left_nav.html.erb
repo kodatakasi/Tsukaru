@@ -11,6 +11,7 @@
       </figure>
         <p><%= current_user.name %></p>
         <p><%= current_user.email %></p>
+        <p><%= current_user.profile %></p>
         <%= link_to 'プロフィール編集', edit_user_path(current_user)%>
         <br>
         <%= link_to "自分の投稿#{current_user.articles.count}件", articles_path(mine: "true") %>

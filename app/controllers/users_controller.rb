@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @articles = @user.articles
   end
 
   def edit
@@ -26,7 +27,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :image)
+    params.require(:user).permit(:name, :email, :image, :profile)
   end
 
   def set_user

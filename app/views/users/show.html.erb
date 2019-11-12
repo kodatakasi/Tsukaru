@@ -1,8 +1,32 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="container">
 
-<%= image_tag(@user.image, width: 100) if @user.image.attached? %>
+ <div class="columns">
+  <div class="column">
+    <div class="box">
+      <h1><%= @user.name%>さん</h1>
+      <%= image_tag(@user.image, width: 300) if @user.image.attached? %>
+      <br>
+      <%= @user.email %>
+      <br>
+      <%= @user.profile %>
+    </div>
+  </div>
 
-<%= link_to 'プロフィール編集', edit_user_path%>
+  <div class="column">
+    <p><%= @user.name %>さんの記事一覧</p>
+        <table class="table">
+          <% @articles.each do |article| %>
+            <tr class="box">
+              <td class="article-name"><%= link_to article.user.name, user_path(article.user) %></td>
+              <td class="article-title"><%= article.title %></td>
+              <td class="article-images"><%= link_to image_tag(article.picture, width: 200), article_path(article) if article.picture.attached? %></td>
+              <% if user_signed_in? %>
+                <td><%= link_to '詳細を確認する', article_path(article.id) %></td>
+                <td><%= link_to "編集する", edit_article_path(article.id) %></td>
+              <% end %>
+            </tr>
+          <% end %>
+        </table>
+  </div>
 
-<%= link_to '投稿一覧', articles_path%>
+</div>
