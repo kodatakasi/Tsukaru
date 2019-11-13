@@ -1,10 +1,29 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: %i(show edit update destroy)
   # before_action :authenticate_user!, only: %i(new edit update destroy create)
+  require "rexml/document"
+  require "open-uri"
+  require 'json'
+
   def index
     @articles = Article.all
     @articles = current_user.favorite_articles if params[:like].present?
     @articles = Article.where(user_id: current_user.id) if params[:mine].present?
+
+    if params[:keyword].present?
+      uri = URI.encode("https://app.rakuten.co.jp/services/api/Travel/KeywordHotelSearch/20170426?format=json&keyword=#{params[:keyword]}&applicationId=1059761295941689260")
+      res = open(uri)
+      code, message = res.status # res.status => ["200", "OK"]
+      
+      if code == '200'
+        @result = ActiveSupport::JSON.decode res.read
+        # binding.pry
+        # resultを使ってなんやかんや処理をする
+      else
+        puts "OMG!! #{code} #{message}"
+      end
+    end
+
   end
 
   def new

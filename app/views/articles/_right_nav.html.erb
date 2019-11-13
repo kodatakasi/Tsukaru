@@ -2,7 +2,21 @@
     <h2>宿泊情報</h2>
     <div class="box">
       <h2>宿泊情報</h2>
-      <p>楽天トラベルapi実装予定</p>
+      <%= form_tag :articles, method: :get do  %>
+        <%= label_tag :keyword, 'キーワード検索' %>
+        <%= text_field_tag 'keyword', params[:keyword] %>
+        <%= submit_tag "検索" %>
+      <% end %>
+      <div class="column">
+        <% if @result.present? %>
+          <%= @result["hotels"][0]["hotel"][0]["hotelBasicInfo"]["hotelName"] %>
+          <br>
+          <%= @result["hotels"][0]["hotel"][0]["hotelBasicInfo"]["hotelSpecial"] %>
+          <br>
+          <img src="<%= @result["hotels"][0]["hotel"][0]["hotelBasicInfo"]["roomThumbnailUrl"] %>" alt=""><%= @result["hotels"][0]["hotel"][0]["hotelBasicInfo"]["roomThumbnailUrl"] %>
+
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
