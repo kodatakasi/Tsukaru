@@ -15,7 +15,7 @@
         <div class="container level">
         <div class="level-left">
           <ul>
-            <li><h1 class="title">Tsukaru</h1>
+            <li><h1 class="title"><%=link_to 'Tsukaru', articles_path, class: 'title' %></h1>
           </li>
             <li><h2 class="subtitle">Have you ever experienced feel well</h2></li>
           </ul>
@@ -30,14 +30,9 @@
     </div>
   </section>
 
-  <div class="container">
-    <% if notice %>
-      <p class="alert alert-notice"><%= notice %></p>
-    <% end %>
-    <% if alert %>
-      <p class="alert alert-error"><%= alert %></p>
-    <% end %>
-  </div>
+  <% if flash[:notice] %>
+    <p><%= flash[:notice] %></p>
+  <% end %>
 
     <%= yield %>
 

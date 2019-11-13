@@ -9,26 +9,50 @@
       <p class="subtitle is-5">タイトル: <%= @article.title %></p>
       <p class="subtitle is-5">写真: <%= image_tag(@article.picture, width: 680) if @article.picture.attached? %></p>
       <p class="is-medium">内容: <%= @article.content %></p>
-
       <%= link_to '一覧ページ', articles_path %>
+
       <% if user_signed_in?%>
         <%= link_to '新規投稿', new_article_path %>
         <%= link_to '投稿を削除する', article_path(@article.id), method: :delete, data: { confirm: '本当に削除していいですか？' } if @article.user.id == current_user.id %>
+
+        <% unless @article.user_id == current_user.id %>
+          <% if @favorite.present? %>
+            <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
+          <% else %>
+            <%= link_to 'お気に入りする', favorites_path(article_id: @article.id), method: :post, class: 'btn btn-primary' %>
+          <% end %>
+        <% end %>
       <% end %>
 
-      <% unless @article.user_id == current_user.id %>
-        <% if @favorite.present? %>
-          <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
-        <% else %>
-          <%= link_to 'お気に入りする', favorites_path(article_id: @article.id), method: :post, class: 'btn btn-primary' %>
+      <h2>コメント一覧</h2>
+
+      <% @comments.each do |comment| %>
+        <div>
+          <a href="/users/<%= comment.user.id %>"><%= comment.user.email %></a>
+          <%= comment.content %>
+          <% if user_signed_in? %>
+            <% if current_user.id == comment.user_id %> 
+              <%= link_to "削除する", article_comment_path(article_id: @article, id: comment.id), method: :delete %>
+            <% end %>
+          <% end %>
+          <hr>
+        </div>
+      <% end %>
+
+      <% if user_signed_in? %>
+        <%= form_with( model: [@article, @comment], local: true ) do |form| %>
+          <%= form.text_field :content %>
+          <br>
+          <%= form.submit 'コメントする' %>
+          <br>
         <% end %>
-     <% end %>
+      <% end %>
 
     </div>
   </div>
 
-<%= render 'right_nav' %>
+  <%= render 'right_nav' %>
 
-<%= render 'footer' %>
+  <%= render 'footer' %>
 
 </div>

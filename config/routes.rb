@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
-  get 'relationships/create'
-  get 'relationships/destroy'
-  get 'users/show'
   root to: 'articles#index'
 
-  resources :articles
+  resources :articles do
+    resources :comments, only: %i(create destroy)
+  end
 
   get "home", to: "article#index"
   devise_for :users, controllers: {

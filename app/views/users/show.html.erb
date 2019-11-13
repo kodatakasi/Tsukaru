@@ -2,8 +2,9 @@
 
  <div class="columns">
   <div class="column">
+    <p><%= @user.name %>さんのプロフィール</p>
     <div class="box">
-      <h1><%= @user.name%>さん</h1>
+      <h1><%= @user.name%></h1>
       <%= image_tag(@user.image, width: 300) if @user.image.attached? %>
       <br>
       <%= @user.email %>

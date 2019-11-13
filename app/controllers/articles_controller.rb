@@ -21,7 +21,9 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @favorite = current_user.favorites.find_by(article_id: @article.id)
+    @favorite = current_user.favorites.find_by(article_id: @article.id) if current_user
+    @comments = @article.comments
+    @comment = Comment.new
   end
 
   def edit
@@ -45,6 +47,6 @@ class ArticlesController < ApplicationController
     params.require(:article).permit(:title, :content, :picture, :user_id)
   end
   def set_article
-    @article = Article.find(params[:id])    
+    @article = Article.find(params[:id])
   end
 end
