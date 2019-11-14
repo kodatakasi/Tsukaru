@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
       @comment.destroy
       redirect_back(fallback_location: root_path)
     else
-      notice: '削除できません'
+      redirect_back(fallback_location: root_path)
     end
   end
 
