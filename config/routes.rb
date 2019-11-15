@@ -3,9 +3,9 @@ Rails.application.routes.draw do
 
   resources :articles do
     resources :comments, only: %i(create destroy)
-    # collection do
-      # get 'search'
-    # end
+    collection do
+      get 'search'
+    end
   end
 
   get "home", to: "article#index"

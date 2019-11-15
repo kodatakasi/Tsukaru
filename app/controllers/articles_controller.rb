@@ -16,14 +16,28 @@ class ArticlesController < ApplicationController
       code, message = res.status # res.status => ["200", "OK"]
       
       if code == '200'
-        @result = ActiveSupport::JSON.decode res.read
-        # binding.pry
-        # resultを使ってなんやかんや処理をする
+        @result_hotel = ActiveSupport::JSON.decode res.read
       else
         puts "OMG!! #{code} #{message}"
       end
     end
 
+  end
+
+  def search
+    @number = params[:number]
+    if params[:number].present?
+      uri = ("http://jws.jalan.net/APICommon/OnsenSearch/V1/?key=leo16e3956ee01&pref=070000&onsen_q=#{params[:number]}&count=2&xml_ptn=1")
+      res = open(uri)
+      code, message = res.status # res.status => ["200", "OK"]
+      
+      if code == '200'
+        doc = REXML::Document.new(open(uri).read)
+        @result_onsen = Hash.from_xml(doc.to_s)
+      else
+        puts "OMG!! #{code} #{message}"
+      end
+    end
   end
 
   def new

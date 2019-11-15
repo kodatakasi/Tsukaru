@@ -1,0 +1,42 @@
+<%= render 'hero'%>
+<div class="container">
+  <div class="main columns">
+
+    <%= render 'left_nav' %>
+
+    <div class="main-contents column is-three-fifths">
+      <%= form_tag :search_articles, method: :get do  %>
+        <%= label_tag :number, '泉質検索' %>
+        <%= select_tag 'number',options_for_select((0..18),selected: '0') %>
+        <%= submit_tag "検索" %>
+      <% end %>
+
+      <% if @result_onsen["Results"]["Onsen"].present? %>
+        <% @result_onsen["Results"]["Onsen"].each do |onsen| %>
+          <div class="box">
+            <% if onsen.present? %>
+              <%= onsen["OnsenName"] %>
+              <br>
+              <%= onsen["Area"]["Region"] %>
+              <br>
+              <%= onsen["OnsenAddress"] %>
+              <br>
+              <%= onsen["NatureOfOnsen"] %>
+              <br>
+              <%= onsen["OnsenAreaCaption"] %>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+
+
+
+    </div>
+
+
+
+  </div>
+
+  <%= render 'footer' %>
+
+</div>

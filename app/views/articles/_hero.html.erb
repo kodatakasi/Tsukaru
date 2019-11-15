@@ -1,8 +1,14 @@
   <section class="hero is-small has-bg-img">
     <div class="hero-body">
       <div class="container has-text-centered">
-        <h1 class="title">温泉検索</h1>
-        <h2 class="subtitle">Subtitle 3</h2>
+        <h1 class="title">
+            <%= form_tag :search_articles, method: :get do  %>
+            <%= label_tag :number, '温泉の泉質から検索' %>
+            <%= select_tag 'number',options_for_select((0..18),selected: '0') %>
+            <%= submit_tag "検索" %>
+          <% end %>
+        </h1>
+        <h2 class="subtitle">都道府県選択実装予定</h2>
       </div>
     </div>
   </section> 
