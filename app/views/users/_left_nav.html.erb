@@ -1,9 +1,13 @@
-  <div class="left-nav column is-3">
+  <div class="left-nav column is-2">
     <h2>ユーザー情報</h2>
     <div class="box">
     <% if user_signed_in? %>
       <figure class="image is-128x128">
-        <%= image_tag(current_user.image, width: 96, class: 'image is-rounded') if current_user.image.attached? %>
+        <% if current_user.image.attached? %>
+          <%= image_tag(current_user.image, width: 96, class: 'image is-rounded') %>
+        <% else %>
+          <%= image_tag('blank-profile-picture-973460__480.png', width: 96, class: 'image is-rounded') %>
+        <% end %>
       </figure>
         <p><%= current_user.name %></p>
         <p><%= current_user.email %></p>
@@ -13,10 +17,9 @@
         <%= link_to "自分の投稿#{current_user.articles.count}件", articles_path(mine: "true") %>
         <br>
         <%= link_to "お気に入り投稿#{current_user.favorites.count}件", articles_path(like: "true") %>
-        <p>フォロー<%= current_user.following.count%></p>
-        <p>フォロワー<%= current_user.followers.count%></p>
+        <p>フォロー<%= current_user.following.count%> フォロワー<%= current_user.followers.count%></p>
       <% else %>
-        <figure class="image is-96x96">
+        <figure class="image is-128x128">
           <%= image_tag 'blank-profile-picture-973460__480.png', class: 'is-rounded'%>
         </figure>
         <p>ユーザー名</p>

@@ -6,7 +6,7 @@ class ArticlesController < ApplicationController
   require 'json'
 
   def index
-    @articles = Article.all
+    @articles = Article.all.order(id: "DESC")
     @articles = current_user.favorite_articles if params[:like].present?
     @articles = Article.where(user_id: current_user.id) if params[:mine].present?
 
@@ -25,9 +25,8 @@ class ArticlesController < ApplicationController
   end
 
   def search
-    @number = params[:number]
     if params[:number].present?
-      uri = ("http://jws.jalan.net/APICommon/OnsenSearch/V1/?key=leo16e3956ee01&pref=070000&onsen_q=#{params[:number]}&count=2&xml_ptn=1")
+      uri = ("http://jws.jalan.net/APICommon/OnsenSearch/V1/?key=leo16e3956ee01&pref=#{params[:prefectures]}&onsen_q=#{params[:number]}&count=10&xml_ptn=1")
       res = open(uri)
       code, message = res.status # res.status => ["200", "OK"]
       
@@ -46,6 +45,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = current_user.articles.build(article_params)
+
     if @article.save
     redirect_to articles_path, notice: "投稿しました！"
     else
@@ -79,6 +79,7 @@ class ArticlesController < ApplicationController
   def article_params
     params.require(:article).permit(:title, :content, :picture, :user_id)
   end
+
   def set_article
     @article = Article.find(params[:id])
   end

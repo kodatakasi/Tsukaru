@@ -3,8 +3,8 @@
   <%= render 'left_nav' %>
 
   <div class="main-contents column is-three-fifths">
+      <p>詳細画面</p>
     <div class="box">
-      <h5 class="title is-5">詳細画面</h4>
 
       <p class="subtitle is-5">タイトル: <%= @article.title %></p>
       <p class="subtitle is-5">写真: <%= image_tag(@article.picture, width: 680) if @article.picture.attached? %></p>

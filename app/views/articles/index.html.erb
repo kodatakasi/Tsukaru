@@ -6,42 +6,52 @@
 
     <div class="main-contents column is-three-fifths">
       <%= link_to "記事一覧", articles_path %>
-
-      <% @articles.each do |article| %>
-        <div class="box box-radius">
-          <div class="card">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <%= link_to image_tag(article.picture, width: 200), article_path(article) if article.picture.attached? %>
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-left">
-                  <figure class="image is-48x48">
-                    <%= image_tag('blank-profile-picture-973460__480.png', width: 96, class: 'image is-rounded') %>
-                  </figure>
-                </div>
-                <div class="media-content">
-                  <p class="title is-4"><%= article.user.name %></p>
-                  <p class="subtitle is-6"><%= article.user.email %></p>
-                </div>
-              </div>
-
-              <div class="content">
-                <%= article.title %>
-                <% if user_signed_in? %>
-                  <%= link_to '詳細を確認する', article_path(article.id) %>
-                  <% if current_user.id == article.user_id %>
-                    <%= link_to "編集する", edit_article_path(article.id) %>
+      <div class="columns is-mobile is-multiline is-centered">
+        <% @articles.each do |article| %>
+          <div class="column is-5 is-narrow">
+            <div class="card">
+              <div class="card-image">
+                <figure class="image is-4by3">
+                  <% if article.picture.attached? %>
+                    <%= link_to image_tag(article.picture, width: 200), article_path(article) %>
+                  <% else %>
+                    <%= link_to image_tag("AME_ginzan02_TP_V.jpg", width: 200), article_path(article) %>
                   <% end %>
-                <% end %>
-                <div><%= article.created_at %></div>
+                </figure>
               </div>
-            </div>
+              <div class="card-content">
+                <div class="media">
+                  <div class="media-left">
+                    <figure class="image is-48x48">
+                      <% if article.user.image.attached? %>
+                        <%= image_tag(article.user.image, width: 96, class: 'image is-rounded') %>
+                      <% else %>
+                        <%= image_tag('blank-profile-picture-973460__480.png', width: 96, class: 'image is-rounded') %>
+                      <% end %>
+                    </figure>
+                  </div>
+                  <div class="media-content">
+                    <p class="title is-4"><%= article.user.name %></p>
+                    <p class="subtitle is-6"><%= article.user.email %></p>
+                  </div>
+                </div>
+
+                <div class="content">
+                  <%= article.title %>
+                  <br>
+                  <% if user_signed_in? %>
+                    <%= link_to '詳細を確認する', article_path(article.id) %>
+                    <% if current_user.id == article.user_id %>
+                      <%= link_to "編集する", edit_article_path(article.id) %>
+                    <% end %>
+                  <% end %>
+                  <div><%= article.created_at %></div>
+                </div>
+              </div>
+          </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
 
     </div>
 
