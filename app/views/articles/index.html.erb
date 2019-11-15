@@ -36,7 +36,7 @@
                     <%= link_to "編集する", edit_article_path(article.id) %>
                   <% end %>
                 <% end %>
-                <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+                <div><%= article.created_at %></div>
               </div>
             </div>
         </div>

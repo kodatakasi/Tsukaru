@@ -1,7 +1,6 @@
 <div class="right-nav column is-3">
   <h2>宿泊情報</h2>
   <div class="box">
-    <h2>宿泊情報</h2>
 
     <%= form_tag :articles, method: :get do  %>
       <%= label_tag :keyword, 'キーワード検索' %>
@@ -14,9 +13,12 @@
         <div class="column">
           <%= hotel["hotel"][0]["hotelBasicInfo"]["hotelName"] %>
           <br>
-          <img src="<%= hotel["hotel"][0]["hotelBasicInfo"]["roomThumbnailUrl"] %>" alt="<%= hotel["hotel"][0]["hotelBasicInfo"]["roomThumbnailUrl"] %>">
+          <img src="<%= hotel["hotel"][0]["hotelBasicInfo"]["hotelImageUrl"] %>" alt="<%= hotel["hotel"][0]["hotelBasicInfo"]["roomThumbnailUrl"] %>">
           <br>
           <%= hotel["hotel"][0]["hotelBasicInfo"]["hotelSpecial"] %>
+          <br>
+          <p>利用した人の声↓</p>
+          <%= hotel["hotel"][0]["hotelBasicInfo"]["userReview"] %>
           <br>
         </div>
       <% end %>
