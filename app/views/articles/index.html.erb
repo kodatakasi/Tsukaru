@@ -7,7 +7,7 @@
     <div class="main-contents column is-three-fifths">
       <%= link_to "記事一覧", articles_path %>
       <div class="columns is-mobile is-multiline is-centered">
-        <% @articles.each do |article| %>
+        <% @search_articles.each do |article| %>
           <div class="column is-5 is-narrow">
             <div class="card">
               <div class="card-image">
@@ -22,16 +22,16 @@
               <div class="card-content">
                 <div class="media">
                   <div class="media-left">
-                    <figure class="image is-48x48">
+                    <figure>
                       <% if article.user.image.attached? %>
-                        <%= image_tag(article.user.image, width: 96, class: 'image is-rounded') %>
+                        <%= image_tag(article.user.image, class: 'profile-image') %>
                       <% else %>
                         <%= image_tag('blank-profile-picture-973460__480.png', width: 96, class: 'image is-rounded') %>
                       <% end %>
                     </figure>
                   </div>
                   <div class="media-content">
-                    <p class="title is-4"><%= article.user.name %></p>
+                    <p class="title is-4"><%= link_to article.user.name, user_path(article.user) %></p>
                     <p class="subtitle is-6"><%= article.user.email %></p>
                   </div>
                 </div>

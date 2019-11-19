@@ -2,9 +2,9 @@
     <h2>ユーザー情報</h2>
     <div class="box">
     <% if user_signed_in? %>
-      <figure class="image is-128x128">
+      <figure class="">
         <% if current_user.image.attached? %>
-          <%= image_tag(current_user.image, width: 96, class: 'image is-rounded') %>
+          <%= image_tag(current_user.image, width: 96, class: 'profile-image') %>
         <% else %>
           <%= image_tag('blank-profile-picture-973460__480.png', width: 96, class: 'image is-rounded') %>
         <% end %>

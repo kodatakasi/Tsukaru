@@ -1,6 +1,13 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_search
+
+def set_search
+  @search = Article.ransack(params[:q])
+  @search.sorts = 'id desc' if @search.sorts.empty?
+  @search_articles = @search.result
+end
 
   protected
 

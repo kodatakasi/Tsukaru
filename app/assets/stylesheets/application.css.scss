@@ -15,4 +15,18 @@
  */
  @import "bulma";
 
- .has-bg-img { background: url('SAYAPAKU4745_TP_V.jpg')center center; background-size:cover; }
+ .has-bg-img {
+   background: url('SAYAPAKU4745_TP_V.jpg')center center;
+   background-size: cover;
+ }
+
+ .hero-body {
+   padding: 1rem 1.5rem;
+ }
+
+ .profile-image {
+  width:120px;
+	height:120px;
+	object-fit:cover;
+	border-radius:50%;
+ }

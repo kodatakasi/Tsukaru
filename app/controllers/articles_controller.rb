@@ -28,7 +28,7 @@ class ArticlesController < ApplicationController
     @onsen = Onsen.new
 
     if params[:number].present?
-      uri = ("http://jws.jalan.net/APICommon/OnsenSearch/V1/?key=leo16e3956ee01&pref=#{params[:prefectures]}&onsen_q=#{params[:number]}&count=10&xml_ptn=1")
+      uri = ("http://jws.jalan.net/APICommon/OnsenSearch/V1/?key=leo16e3956ee01&pref=#{params[:prefectures]}&onsen_q=#{params[:number]}&count=60&xml_ptn=1")
       res = open(uri)
       code, message = res.status # res.status => ["200", "OK"]
       

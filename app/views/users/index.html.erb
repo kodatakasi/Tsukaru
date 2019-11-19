@@ -9,6 +9,13 @@
         <% @users.each do |user| %>
           <%= user.name %>
           <%= user.email %>
+        <figure class="image is-96x96">
+          <% if user.image.attached? %>
+            <%= image_tag(user.image, width: 96, class: 'image is-rounded') %>
+          <% else %>
+            <%= image_tag('blank-profile-picture-973460__480.png', width: 96, class: 'image is-rounded') %>
+          <% end %>
+      </figure>
           <%= render 'follow_form', user: user %>
       <% end %>
       </div>

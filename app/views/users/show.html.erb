@@ -5,7 +5,7 @@
     <p><%= @user.name %>さんのプロフィール</p>
     <div class="box">
       <h1><%= @user.name%></h1>
-      <%= image_tag(@user.image, width: 300) if @user.image.attached? %>
+      <%= image_tag @user.image, class: 'profile-image' if @user.image.attached? %>
       <br>
       <%= @user.email %>
       <br>
