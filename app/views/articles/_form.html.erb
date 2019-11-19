@@ -1,4 +1,4 @@
-<%= form_with(model: @article, local: true) do |form| %>
+<%= form_with(model: @article, local: true) do |f| %>
   <% if @article.errors.any? %>
     <div id="error_explanation">
       <h2><%= @article.errors.count %>件のエラーがあります。</h2>
@@ -11,18 +11,33 @@
     </div>
   <% end %>
 
+  <%= f.fields_for :onsen do |onsen_form| %>
+    <div class="field">
+      <%= onsen_form.hidden_field :name, value: @onsen.name %>
+    </div>
+    <div class="field">
+      <%= onsen_form.hidden_field :prefectures, value: @onsen.prefectures %>
+    </div>
+    <div class="field">
+      <%= onsen_form.hidden_field :quality, value: @onsen.quality %>
+    </div>
+    <div class="field">
+      <%= onsen_form.hidden_field :infomation, value: @onsen.infomation %>
+    </div>
+  <% end %>
+
   <div class="article_title control">
-    <%= form.label :title %>
-    <%= form.text_field :title, class: "input", placeholder: "タイトル" %>
+    <%= f.label :title %>
+    <%= f.text_field :title, class: "input", placeholder: "タイトル" %>
   </div>
   <div class="article_image">
-    <%= form.label :picture %>
-    <%= form.file_field :picture %>
+    <%= f.label :picture %>
+    <%= f.file_field :picture %>
   </div>
   <div class="article_content control">
-    <%= form.label :content %>
-    <%= form.text_area :content ,class: "textarea", placeholder: "温泉体験", rows: "10" %>
+    <%= f.label :content %>
+    <%= f.text_area :content ,class: "textarea", placeholder: "温泉体験", rows: "10" %>
   </div>
-  <%= form.submit %>
+  <%= f.submit %>
 <% end %>
 <%= link_to '一覧ページ', articles_path %>

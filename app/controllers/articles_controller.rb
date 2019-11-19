@@ -25,6 +25,8 @@ class ArticlesController < ApplicationController
   end
 
   def search
+    @onsen = Onsen.new
+
     if params[:number].present?
       uri = ("http://jws.jalan.net/APICommon/OnsenSearch/V1/?key=leo16e3956ee01&pref=#{params[:prefectures]}&onsen_q=#{params[:number]}&count=10&xml_ptn=1")
       res = open(uri)
@@ -41,6 +43,8 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new
+    @article.build_onsen
+    @onsen = Onsen.new(name: params[:name], prefectures: params[:prefectures], quality: params[:quality], infomation: params[:infomation])
   end
 
   def create
@@ -77,7 +81,7 @@ class ArticlesController < ApplicationController
 
   private
   def article_params
-    params.require(:article).permit(:title, :content, :picture, :user_id)
+    params.require(:article).permit(:title, :content, :picture, :user_id, onsen_attributes: [:name, :prefectures, :quality, :infomation, :article_id])
   end
 
   def set_article

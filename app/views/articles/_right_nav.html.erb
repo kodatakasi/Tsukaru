@@ -11,7 +11,7 @@
     <% if @result_hotel.present? %>
       <% @result_hotel["hotels"].each do |hotel| %>
         <div class="column">
-          <%= hotel["hotel"][0]["hotelBasicInfo"]["hotelName"] %>
+          <%= link_to hotel["hotel"][0]["hotelBasicInfo"]["hotelName"], hotel["hotel"][0]["hotelBasicInfo"]["hotelInformationUrl"] %>
           <br>
           <img src="<%= hotel["hotel"][0]["hotelBasicInfo"]["hotelImageUrl"] %>" alt="<%= hotel["hotel"][0]["hotelBasicInfo"]["roomThumbnailUrl"] %>">
           <br>
@@ -23,6 +23,10 @@
         </div>
       <% end %>
     <% end %>
+
+  <!-- Rakuten Web Services Attribution Snippet FROM HERE -->
+  <a href="https://webservice.rakuten.co.jp/" target="_blank">Supported by Rakuten Developers</a>
+  <!-- Rakuten Web Services Attribution Snippet TO HERE -->
 
   </div>
 </div>

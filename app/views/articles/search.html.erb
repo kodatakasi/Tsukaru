@@ -5,31 +5,55 @@
     <%= render 'left_nav' %>
 
     <div class="main-contents column is-three-fifths">
-      <%= form_tag :search_articles, method: :get do  %>
-        <%= label_tag :number, '泉質検索' %>
-        <%= select_tag 'number',options_for_select((0..18),selected: '0') %>
-        <%= submit_tag "検索" %>
-      <% end %>
+      <% if @result_onsen %>
+      
+        <h2>検索結果</h2>
+        <% if @result_onsen["Results"]["Onsen"].present? %>
+          <% @result_onsen["Results"]["Onsen"].each do |onsen| %>
+            <div class="box">
+              <% if onsen.present? %>
+                <%= link_to onsen["OnsenName"], onsen["OnsenAreaURL"] %>
+                <br>
+                <%= onsen["Area"]["Region"] %>
+                <br>
+                <%= onsen["OnsenAddress"] %>
+                <%= onsen["OnsenAreaName"] %>
+                <br>
+                <%= onsen["NatureOfOnsen"] %>
+                <br>
+                <%= onsen["OnsenAreaCaption"] %>
+                <br>
+              <% end %>
 
-      <% if @result_onsen["Results"]["Onsen"].present? %>
-        <% @result_onsen["Results"]["Onsen"].each do |onsen| %>
-          <div class="box">
-            <% if onsen.present? %>
-              <%= onsen["OnsenName"] %>
-              <br>
-              <%= onsen["Area"]["Region"] %>
-              <br>
-              <%= onsen["OnsenAddress"] %>
-              <%= onsen["OnsenAreaName"] %>
-              <br>
-              <%= onsen["NatureOfOnsen"] %>
-              <br>
-              <%= onsen["OnsenAreaCaption"] %>
-              <br>
-            <% end %>
-          </div>
-        <% end %>
+              <%= form_with url: new_article_path, method: :get, local: true do |f| %>
+                <div class="field">
+                  <%= f.hidden_field :name, value: onsen["OnsenName"] %>
+                </div>
+                <div class="field">
+                  <%= f.hidden_field :prefectures, value: onsen["Area"]["Region"] %>
+                </div>
+                <div class="field">
+                  <%= f.hidden_field :quality, value: onsen["NatureOfOnsen"] %>
+                </div>
+                <div class="field">
+                  <%= f.hidden_field :infomation, value: onsen["OnsenAreaCaption"] %>
+                </div>
+                <div class="actions">
+                  <%= f.submit '記事作成' %>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+
+        <a href="https://www.jalan.net/jw/jwp0000/jww0001.do"><img src="https://www.jalan.net/jalan/doc/jws/images/jws_88_50_blue.gif" alt="じゃらん Web サービス" title="じゃらん Web サービス" border="0"></a>
+        
       <% end %>
+    <% else %>
+      <h2>温泉検索</h2>
+      <div class="box">
+        <p>温泉を検索して記事を投稿しよう</p>
+      </div>
+    <% end %>
 
 
 

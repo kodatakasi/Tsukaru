@@ -27,7 +27,7 @@
       <% end %>
       <div class="container">
         <% if user_signed_in? %>
-          <%= link_to "新規投稿", new_article_path %>
+          <%= link_to "新規投稿", search_articles_path %>
           <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
         <% else %>
           <%= link_to "新規登録", new_user_registration_path %>
