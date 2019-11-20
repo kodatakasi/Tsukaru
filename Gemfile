@@ -18,7 +18,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'devise'
 gem 'omniauth'
-gem 'omniauth-facebook'
+gem 'omniauth-facebook', '~> 4.0.0'
 gem 'omniauth-line'
 gem 'carrierwave'
 gem 'mini_magick', '~> 4.8'
