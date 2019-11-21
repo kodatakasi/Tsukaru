@@ -260,10 +260,10 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
-  config.omniauth :facebook, ENV["FACEBOOK_ID"], ENV["FACEBOOK_SECRET_KEY"], scope: 'email', info_fields: 'email,name'
+  config.omniauth :facebook, ENV["FACEBOOK_ID"], ENV["FACEBOOK_SECRET_KEY"], scope: 'public_profile,email'
+  # {:scope => 'email', :info_fields => 'id,email,gender,link,locale,name,timezone,updated_time,verified,last_name,first_name,middle_name'}
 
-  config.omniauth :line, ENV["LINE_ID"], ENV["LINE_SECRET_KEY"], token_params: { parse: :json }, scope: 'email,name,image'
-
+  config.omniauth :line, ENV["LINE_ID"], ENV["LINE_SECRET_KEY"], scope: 'profile'
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
@@ -272,7 +272,7 @@ Devise.setup do |config|
   #   manager.intercept_401 = false
   #   manager.default_strategies(scope: :user).unshift :some_external_strategy
   # end
-
+  
   # ==> Mountable engine configurations
   # When using Devise inside an engine, let's call it `MyEngine`, and this engine
   # is mountable, there are some extra configurations to be taken into account.

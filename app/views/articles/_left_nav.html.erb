@@ -1,30 +1,32 @@
   <div class="left-nav column is-2 has-text-centered">
     <h2>ユーザー情報</h2>
+
     <div class="box">
-    <% if user_signed_in? %>
-      <figure>
-        <% if current_user.image.attached? %>
-          <%= image_tag(current_user.image, width: 96, class: 'profile-image') %>
-        <% else %>
-          <%= image_tag('blank-profile-picture-973460__480.png', width: 96, class: 'profile-image') %>
-        <% end %>
-      </figure>
-        <p class="subtitle is-6"><%= current_user.name %></p>
-        <p class="subtitle is-6"><%= current_user.email %></p>
-        <p class="subtitle is-6"><%= current_user.profile %></p>
-        <%= link_to 'プロフィール編集', edit_user_path(current_user)%>
-        <br>
-        <%= link_to "自分の投稿#{current_user.articles.count}件", articles_path(mine: "true") %>
-        <br>
-        <%= link_to "お気に入り投稿#{current_user.favorites.count}件", articles_path(like: "true") %>
-        <p>フォロー<%= current_user.following.count%> フォロワー<%= current_user.followers.count%></p>
-      <% else %>
+      <% if user_signed_in? %>
         <figure>
-          <%= image_tag 'blank-profile-picture-973460__480.png', class: 'profile-image'%>
+          <% if current_user.image.attached? %>
+            <%= image_tag(current_user.image, width: 96, class: 'profile-image') %>
+          <% else %>
+            <%= image_tag('blank-profile-picture-973460__480.png', width: 96, class: 'profile-image') %>
+          <% end %>
         </figure>
-        <p>ユーザー名</p>
-        <p>自己紹介コメント</p>
-      <% end %>
+          <p class="subtitle is-6"><%= current_user.name %></p>
+          <p class="subtitle is-6"><%= current_user.email %></p>
+          <p class="subtitle is-6"><%= current_user.profile %></p>
+          <%= link_to 'プロフィール編集', edit_user_path(current_user)%>
+          <br>
+          <%= link_to "自分の投稿#{current_user.articles.count}件", articles_path(mine: "true") %>
+          <br>
+          <%= link_to "お気に入り投稿#{current_user.favorites.count}件", articles_path(like: "true") %>
+          <p>フォロー<%= current_user.following.count%> フォロワー<%= current_user.followers.count%></p>
+        <% else %>
+          <figure>
+            <%= image_tag 'blank-profile-picture-973460__480.png', class: 'profile-image'%>
+          </figure>
+          <p>ユーザー名</p>
+          <p>自己紹介コメント</p>
+        <% end %>
+
       <div class="container">
         <% if user_signed_in? %>
           <%= link_to "新規投稿", search_articles_path %>
@@ -33,6 +35,8 @@
           <%= link_to "新規登録", new_user_registration_path %>
           <%= link_to "ログイン", new_user_session_path %>
         <% end %>
-       </div>
+      </div>
+      
     </div>
+
   </div>

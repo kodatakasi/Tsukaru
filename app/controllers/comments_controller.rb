@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     @comment.user_id = current_user.id
-    @comment.article_id = article.id
+    @comment.article_id = @article.id
     
     if @comment.save
       redirect_back(fallback_location: root_path)
@@ -14,8 +14,8 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    if current_user == @comment.user_id
-      @comment = @article.comments.find(params[:id])
+    @comment = @article.comments.find(params[:id])
+    if current_user.id == @comment.user_id
       @comment.destroy
       redirect_back(fallback_location: root_path)
     else
