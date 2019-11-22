@@ -31,7 +31,7 @@
                     </figure>
                   </div>
                   <div class="media-content">
-                    <p class="title is-4"><%= link_to article.user.name, user_path(article.user) %></p>
+                    <p class="title is-6"><%= link_to article.user.name, user_path(article.user) %></p>
                     <p class="subtitle is-6"><%= article.user.email %></p>
                   </div>
                 </div>
@@ -52,7 +52,8 @@
         </div>
       <% end %>
     </div>
-        <%= paginate @articles %>
+
+    <%= paginate @articles %>
 
     </div>
 

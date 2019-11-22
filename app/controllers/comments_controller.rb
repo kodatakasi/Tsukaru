@@ -20,6 +20,25 @@ class CommentsController < ApplicationController
     @comment = @article.comment.build
   end
 
+  def edit
+    @comment = @article.comments.find(params[:id])
+    respond_to do |format|
+      @comment.update
+    end
+
+  end
+
+  def update
+    @comment = @article.comments.find(params[:id])
+    respond_to do |format|
+      if @comment.update(comment_params)
+        format.js { render :index }
+      else
+        format.html { redirect_to article_path(@article), notice: '編集できませんでした...' }
+      end
+    end
+  end
+
   def destroy
     @comment = @article.comments.find(params[:id])
 

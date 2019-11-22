@@ -38,6 +38,6 @@
     <%= f.label :content %>
     <%= f.text_area :content ,class: "textarea", placeholder: "温泉体験", rows: "10" %>
   </div>
-  <%= f.submit %>
+  <%= f.submit "投稿する", class: "button is-info"%>
 <% end %>
 <%= link_to '一覧ページ', articles_path %>

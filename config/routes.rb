@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root to: 'articles#index'
 
   resources :articles do
-    resources :comments, only: %i(create destroy)
+    resources :comments
     collection do
       get 'search'
     end
