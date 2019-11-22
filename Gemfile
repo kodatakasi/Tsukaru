@@ -26,6 +26,7 @@ gem 'ransack'
 gem 'bulma-rails'
 gem 'i18n'
 gem 'jquery-rails'
+gem 'kaminari'
 
 
 group :development, :test do
