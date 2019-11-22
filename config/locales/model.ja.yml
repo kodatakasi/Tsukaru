@@ -13,7 +13,6 @@ a:
         email: "メールアドレス"
         content: "内容"
       user:
-        title: "タイトル"
         name: "名前"
         email: "メールアドレス"
         content: "内容"

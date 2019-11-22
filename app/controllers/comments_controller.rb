@@ -22,10 +22,6 @@ class CommentsController < ApplicationController
 
   def edit
     @comment = @article.comments.find(params[:id])
-    respond_to do |format|
-      @comment.update
-    end
-
   end
 
   def update
