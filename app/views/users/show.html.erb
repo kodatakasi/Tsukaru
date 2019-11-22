@@ -1,33 +1,37 @@
 <div class="container">
 
- <div class="columns">
-  <div class="column">
-    <p><%= @user.name %>さんのプロフィール</p>
-    <div class="box">
-      <h1><%= @user.name%></h1>
-      <%= image_tag @user.image, class: 'profile-image' if @user.image.attached? %>
-      <br>
-      <%= @user.email %>
-      <br>
-      <%= @user.profile %>
+  <div class="columns">
+
+    <div class="column">
+      <p><%= @user.name %>さんのプロフィール</p>
+      <div class="box">
+        <h1><%= @user.name%></h1>
+        <%= image_tag @user.image, class: 'profile-image' if @user.image.attached? %>
+        <br>
+        <%= @user.email %>
+        <br>
+        <%= @user.profile %>
+      </div>
     </div>
-  </div>
 
-  <div class="column">
-    <p><%= @user.name %>さんの記事一覧</p>
-    <table class="table">
-      <% @articles.each do |article| %>
-        <tr class="box">
-          <td class="article-name"><%= link_to article.user.name, user_path(article.user) %></td>
-          <td class="article-title"><%= article.title %></td>
-          <td class="article-images"><%= link_to image_tag(article.picture, width: 200), article_path(article) if article.picture.attached? %></td>
-          <% if user_signed_in? %>
-            <td><%= link_to '詳細を確認する', article_path(article.id) %></td>
-            <td><%= link_to "編集する", edit_article_path(article.id) %></td>
-          <% end %>
-        </tr>
-      <% end %>
-    </table>
-  </div>
+    <div class="column">
+      <p><%= @user.name %>さんの記事一覧</p>
+      <table class="table">
+        <% @articles.each do |article| %>
+          <tr class="box">
+            <td class="article-name"><%= link_to article.user.name, user_path(article.user) %></td>
+            <td class="article-title"><%= article.title %></td>
+            <td class="article-images"><%= link_to image_tag(article.picture, width: 200), article_path(article) if article.picture.attached? %></td>
+            <% if user_signed_in? %>
+              <td><%= link_to '詳細を確認する', article_path(article.id) %></td>
+              <td><%= link_to "編集する", edit_article_path(article.id) %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </table>
+    </div>
 
+  </div>
+  
 </div>
+

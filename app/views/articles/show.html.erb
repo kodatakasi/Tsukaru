@@ -3,7 +3,7 @@
   <%= render 'left_nav' %>
 
   <div class="main-contents column is-three-fifths">
-      <p>詳細画面</p>
+    <p>詳細画面</p>
     <div class="box">
       <p><%= @article.onsen.name %></p>
       <p><%= @article.onsen.prefectures %></p>
@@ -12,7 +12,7 @@
       <p class="subtitle is-5">タイトル: <%= @article.title %></p>
       <p class="subtitle is-5">写真: <%= image_tag(@article.picture, width: 680) if @article.picture.attached? %></p>
       <p class="is-medium">内容: <%= @article.content %></p>
-      <%= link_to '一覧ページ', articles_path %>
+      <%= link_to '記事一覧に戻る', articles_path %>
 
       <% if user_signed_in?%>
         <%= link_to '新規投稿', new_article_path %>
@@ -29,33 +29,20 @@
 
       <h2>コメント一覧</h2>
 
-      <% @comments.each do |comment| %>
-        <div>
-          <a href="/users/<%= comment.user.id %>"><%= comment.user.email %></a>
-          <%= comment.content %>
-          <% if user_signed_in? %>
-            <% if current_user.id == comment.user_id %> 
-              <%= link_to "削除する", article_comment_path(article_id: @article, id: comment.id), method: :delete %>
-            <% end %>
-          <% end %>
-          <hr>
-        </div>
-      <% end %>
-
+      <div id="comments_area">
+        <%= render partial: 'comments/index', locals: { comments: @comments, article_path: @article_path } %>
+      </div>
       <% if user_signed_in? %>
-        <%= form_with( model: [@article, @comment], local: true ) do |form| %>
-          <%= form.text_field :content %>
-          <br>
-          <%= form.submit 'コメントする' %>
-          <br>
+        <%= render partial: 'comments/form', locals: { comment: @comment, article_path: @article_path } %>
+        <% if @article.user_id == current_user.id %>
+          <%= link_to '記事の編集', edit_article_path(@article) %> |
         <% end %>
       <% end %>
-
+      <%= link_to '戻る', articles_path %>
     </div>
+
   </div>
 
   <%= render 'right_nav' %>
-
-  <%= render 'footer' %>
 
 </div>

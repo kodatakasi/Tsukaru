@@ -2,24 +2,34 @@ class CommentsController < ApplicationController
   before_action :set_article
 
   def create
-    @comment = Comment.new(comment_params)
+    @article = Article.find(params[:article_id])
+    @comment = @article.comments.build(comment_params)
     @comment.user_id = current_user.id
-    @comment.article_id = @article.id
-    
-    if @comment.save
-      redirect_back(fallback_location: root_path)
-    else
-      redirect_back(fallback_location: root_path)
+
+    respond_to do |format|
+      if @comment.save
+        format.js { render :index }
+      else
+        format.html { redirect_to article_path(@article), notice: '投稿できませんでした...' }
+      end
     end
+  end
+
+  def show
+    @comments = @article.comments
+    @comment = @article.comment.build
   end
 
   def destroy
     @comment = @article.comments.find(params[:id])
-    if current_user.id == @comment.user_id
-      @comment.destroy
-      redirect_back(fallback_location: root_path)
-    else
-      redirect_back(fallback_location: root_path)
+
+    respond_to do |format|
+      if current_user.id == @comment.user_id
+        @comment.destroy
+        format.js { render :index }
+      else
+        format.html { redirect_to article_path(@article), notice: '削除できませんでした...' }
+      end
     end
   end
 
@@ -29,6 +39,6 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:content)
+    params.require(:comment).permit(:article_id, :content)
   end
 end

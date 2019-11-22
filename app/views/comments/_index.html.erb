@@ -1,0 +1,15 @@
+<ul>
+  <% comments.each do |comment| %>
+    <% if comment.id.present? %>
+      <li>
+        <p><%= comment.user.name %>さん</p>
+        <% if user_signed_in? %>
+          <% if comment.user_id == current_user.id %>
+            <%= link_to '削除する', [comment.article, comment], method: :delete, remote: true %>
+          <% end %>
+        <% end %>
+        <p><%= comment.content %></p>
+      </li>
+    <% end %>
+  <% end %>
+</ul>

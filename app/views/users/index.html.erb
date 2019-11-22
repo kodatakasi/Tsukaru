@@ -5,20 +5,22 @@
 
     <div class="column is-half">
       <h2>ユーザー</h2>
-      <div class="box">
-        <% @users.each do |user| %>
-          <%= user.name %>
-          <%= user.email %>
-        <figure class="image is-96x96">
-          <% if user.image.attached? %>
-            <%= image_tag(user.image, width: 96, class: 'image is-rounded') %>
-          <% else %>
-            <%= image_tag('blank-profile-picture-973460__480.png', width: 96, class: 'image is-rounded') %>
+      <% @users.each do |user| %>
+        <div class="box">
+          <figure>
+            <% if user.image.attached? %>
+              <%= image_tag(user.image, width: 96, class: 'profile-image') %>
+            <% else %>
+              <%= image_tag('blank-profile-picture-973460__480.png', width: 96, class: 'profile-image') %>
+            <% end %>
+          </figure>
+          <p><%= user.name %>さん</p>
+          <p><%= user.email %></p>
+          <% unless current_user == user %>
+            <%= render 'follow_form', user: user %>
           <% end %>
-      </figure>
-          <%= render 'follow_form', user: user %>
+        </div>
       <% end %>
-      </div>
     </div>
   </div>
 </div>

@@ -1,12 +1,13 @@
 <%= render 'hero'%>
+
 <div class="container">
+
   <div class="main columns">
 
     <%= render 'left_nav' %>
 
     <div class="main-contents column is-three-fifths">
       <% if @result_onsen %>
-      
         <h2>検索結果</h2>
         <% if @result_onsen["Results"]["Onsen"].present? %>
           <% @result_onsen["Results"]["Onsen"].each do |onsen| %>
@@ -55,14 +56,8 @@
       </div>
     <% end %>
 
-
-
     </div>
 
-
-
   </div>
-
-  <%= render 'footer' %>
 
 </div>

@@ -40,7 +40,7 @@
                   <%= article.title %>
                   <br>
                   <% if user_signed_in? %>
-                    <%= link_to '詳細を確認する', article_path(article.id) %>
+                    <%= link_to '記事を読む', article_path(article.id) %>
                     <% if current_user.id == article.user_id %>
                       <%= link_to "編集する", edit_article_path(article.id) %>
                     <% end %>
@@ -58,8 +58,5 @@
   <%= render 'right_nav' %>
 
   </div>
-
-  <%= render 'footer' %>
-
 
 </div>
