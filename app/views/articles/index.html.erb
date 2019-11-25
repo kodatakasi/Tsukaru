@@ -39,8 +39,16 @@
                 <div class="content">
                   <%= article.title %>
                   <br>
-                  <% if user_signed_in? %>
+                  <% article.labels.each do |label| %>
+                    <div class="label-container">
+                      <div class="label">
+                      <%= link_to label.name, articles_path(label_id: label.id) %>
+                      </div>
+                    </div>
+                    <% end %>
+                  <br>
                     <%= link_to '記事を読む', article_path(article.id) %>
+                  <% if user_signed_in? %>
                     <% if current_user.id == article.user_id %>
                       <%= link_to "編集する", edit_article_path(article.id) %>
                     <% end %>
@@ -53,7 +61,7 @@
       <% end %>
     </div>
 
-    <%= paginate @articles %>
+
 
     </div>
 

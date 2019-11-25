@@ -6,11 +6,13 @@ class ArticlesController < ApplicationController
   require 'json'
 
   def index
-    @articles = Article.page(params[:page]).per(10).order(id: "DESC")
-    @articles = current_user.favorite_articles.page(params[:page]).per(10) if params[:like].present?
-    @articles = Article.where(user_id: current_user.id).page(params[:page]).per(10) if params[:mine].present?
-
-    if params[:keyword].present?
+    if params[:label_id].present?
+      @search_articles = Article.joins(:labels).where(labels: { id: params[:label_id] }).page(params[:page]).per(10)
+    elsif params[:like].present?
+    @search_articles = current_user.favorite_articles.page(params[:page]).per(10)
+    elsif params[:mine].present?
+    @search_articles = Article.where(user_id: current_user.id).page(params[:page]).per(10)
+    elsif params[:keyword].present?
       uri = URI.encode("https://app.rakuten.co.jp/services/api/Travel/KeywordHotelSearch/20170426?format=json&keyword=#{params[:keyword]}&applicationId=1059761295941689260")
       res = open(uri)
       code, message = res.status # res.status => ["200", "OK"]
@@ -20,8 +22,9 @@ class ArticlesController < ApplicationController
       else
         puts "OMG!! #{code} #{message}"
       end
+    else
+      @articles = Article.page(params[:page]).per(10)
     end
-
   end
 
   def search
@@ -81,7 +84,7 @@ class ArticlesController < ApplicationController
 
   private
   def article_params
-    params.require(:article).permit(:title, :content, :picture, :user_id, onsen_attributes: [:name, :prefectures, :quality, :infomation, :article_id])
+    params.require(:article).permit(:title, :content, :picture, :user_id, { label_ids: [] }, onsen_attributes: [:name, :prefectures, :quality, :infomation, :article_id])
   end
 
   def set_article

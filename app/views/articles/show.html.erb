@@ -11,6 +11,13 @@
       <p><%= @article.onsen.infomation %></p>
       <p class="subtitle is-5">タイトル: <%= @article.title %></p>
       <p class="subtitle is-5">写真: <%= image_tag(@article.picture, width: 680) if @article.picture.attached? %></p>
+      <% @article.labels.each do |label| %>
+        <div class="label-container">
+          <div class="label">
+            <a href="#"><%= label.name %></a>
+          </div>
+        </div>
+        <% end %>
       <p class="is-medium">内容: <%= @article.content %></p>
       <%= link_to '記事一覧に戻る', articles_path %>
 

@@ -30,6 +30,10 @@
     <%= f.label :title %>
     <%= f.text_field :title, class: "input", placeholder: "タイトル" %>
   </div>
+  <div class="field">
+    <%= f.label :label %>
+    <%= f.collection_check_boxes(:label_ids, Label.all, :id, :name) %>
+  </div>
   <div class="article_image">
     <%= f.label :picture %>
     <%= f.file_field :picture %>
