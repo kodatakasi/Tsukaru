@@ -53,7 +53,7 @@
                       <%= link_to "編集する", edit_article_path(article.id) %>
                     <% end %>
                   <% end %>
-                  <div><%= article.created_at %></div>
+                  <div><%= l article.created_at, format: :long %></div>
                 </div>
               </div>
           </div>

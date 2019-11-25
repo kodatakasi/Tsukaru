@@ -1,17 +1,15 @@
-a:
+ja:
   activerecord:
     models:
       article: "投稿"
       user: "ユーザー"
+      onsen: "温泉"
+      comment: "コメント"
     attributes:
       article:
         title: "タイトル"
         content: "内容"
         user_id: "投稿者"
-      contact:
-        name: "名前"
-        email: "メールアドレス"
-        content: "内容"
       user:
         name: "名前"
         email: "メールアドレス"
@@ -20,3 +18,10 @@ a:
         password: "パスワード"
         password_confirmation: "確認用パスワード"
         remember_me: "ログインを記憶"
+      onsen:
+          name: "温泉地"
+          prefectures: "地域"
+          quality: "泉質"
+          infomation: "情報"
+      comment:
+        content: "コメント"

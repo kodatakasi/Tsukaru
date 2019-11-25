@@ -5,10 +5,10 @@
   <div class="main-contents column is-three-fifths">
     <p>詳細画面</p>
     <div class="box">
-      <p><%= @article.onsen.name %></p>
-      <p><%= @article.onsen.prefectures %></p>
-      <p><%= @article.onsen.quality %></p>
-      <p><%= @article.onsen.infomation %></p>
+      <p>温泉地：<%= @article.onsen.name %></p>
+      <p>地域：<%= @article.onsen.prefectures %></p>
+      <p>泉質：<%= @article.onsen.quality %></p>
+      <p>インフォメーション：<%= @article.onsen.infomation %></p>
       <p class="subtitle is-5">タイトル: <%= @article.title %></p>
       <p class="subtitle is-5">写真: <%= image_tag(@article.picture, width: 680) if @article.picture.attached? %></p>
       <% @article.labels.each do |label| %>
