@@ -3,14 +3,15 @@
     <% if comment.id.present? %>
       <li>
         <p><%= comment.user.name %>さん</p>
+        <p id="comment"><%= comment.content %></p>
         <% if user_signed_in? %>
           <% if comment.user_id == current_user.id %>
-            <%= link_to '編集', edit_article_comment_path(comment.article, comment), remote: true %>
+            <%= link_to '編集', edit_article_comment_path(comment.article, comment), remote:true %>
             <%= link_to '削除', [comment.article, comment], method: :delete, remote: true %>
           <% end %>
         <% end %>
-        <p><%= comment.content %></p>
       </li>
     <% end %>
   <% end %>
 </ul>
+<p id="error-massage"></p>

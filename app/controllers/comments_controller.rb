@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
       if @comment.save
         format.js { render :index }
       else
-        format.html { redirect_to article_path(@article), notice: '投稿できませんでした...' }
+        format.js { render :errors }
       end
     end
   end
@@ -21,7 +21,7 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    @comment = @article.comments.find(params[:id])
+      @comment = @article.comments.find(params[:id])
   end
 
   def update
@@ -30,7 +30,7 @@ class CommentsController < ApplicationController
       if @comment.update(comment_params)
         format.js { render :index }
       else
-        format.html { redirect_to article_path(@article), notice: '編集できませんでした...' }
+        format.js { render :errors }
       end
     end
   end

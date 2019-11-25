@@ -14,10 +14,10 @@
       <% @article.labels.each do |label| %>
         <div class="label-container">
           <div class="label">
-            <a href="#"><%= label.name %></a>
+            <%= link_to label.name, articles_path(label_id: label.id) %>
           </div>
         </div>
-        <% end %>
+      <% end %>
       <p class="is-medium">内容: <%= @article.content %></p>
       <%= link_to '記事一覧に戻る', articles_path %>
 
