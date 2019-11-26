@@ -40,7 +40,7 @@
                   <%= f.hidden_field :infomation, value: onsen["OnsenAreaCaption"] %>
                 </div>
                 <div class="actions">
-                  <%= f.submit '記事作成', class: 'button is-info' if user_signed_in?%>
+                  <%= f.submit '記事作成', class: 'button is-info', id: "create" if user_signed_in?%>
                 </div>
               <% end %>
             </div>
