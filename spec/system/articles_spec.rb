@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe Article, type: :system do
   before do
     user = FactoryBot.create(:user)
+    onsen = FactoryBot.create(:onsen)
     article = FactoryBot.create(:article, user: user)
     visit root_path
     click_link 'ログイン'
@@ -10,6 +11,7 @@ RSpec.describe Article, type: :system do
     fill_in "Password", with: "password"
     click_button "Log in"
   end
+
   describe '投稿一覧画面' do
     context 'ログインした場合'
       it '作成済みの投稿が表示されること' do
@@ -29,10 +31,10 @@ RSpec.describe Article, type: :system do
   end
 
   describe '投稿詳細画面' do
-     context '任意の投稿詳細画面に遷移した場合'
-       it '該当投稿の内容が表示されたページに遷移すること' do
+    context '任意の投稿詳細画面に遷移した場合'
+      it '該当投稿の内容が表示されたページに遷移すること' do
         click_link '詳細を確認する'
         expect(page).to have_content 'MyText'
-     end
+    end
   end
 end
