@@ -8,6 +8,31 @@ require File.expand_path('../config/environment', __dir__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
+OmniAuth.configure do |c|
+  c.test_mode = true
+  c.mock_auth[:facebook] = OmniAuth::AuthHash.new({
+    provider: 'facebook',
+    uid: '1234567890',
+    info: {
+      name: "facebook_user",
+      email: "email"
+    },
+    credentials: {
+      token: 'hogepiyo1234'
+    }
+  })
+  c.mock_auth[:line] = OmniAuth::AuthHash.new({
+    provider: 'line',
+    uid: '1234567890',
+    info: {
+      name: "line_user",
+      email: "email"
+    },
+    credentials: {
+      token: 'hogepiyo1234'
+    }
+  })
+end
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are

@@ -4,7 +4,7 @@
     <%= form_with(model: @user, local: true) do |form| %>
 
       <div class="field">
-        <%= form.label :ユーザーネーム %><br />
+        <%= form.label :name %><br />
         <%= form.text_field :name, class: "input is-small is-rounded", placeholder: "Username" %>
       </div>
 
@@ -19,14 +19,14 @@
       </div>
 
       <div class="field">
-        <%= form.label :プロフィール %><br />
+        <%= form.label :profile %><br />
         <%= form.text_field :profile, class: "textarea is-rounded", placeholder: "Profile" %>
       </div>
 
       <%= form.submit class: "button is-info" %>
     <% end %>
 
-    <%= link_to 'ユーザー情報をを削除する', user_path(@user.id), method: :delete, data: { confirm: '本当に削除していいですか？' } if @user.id == current_user.id %>
+    <%= link_to 'ユーザー情報を削除する', user_path(@user.id), method: :delete, data: { confirm: '本当に削除していいですか？' } if @user.id == current_user.id %>
     <br>
     <%= link_to '投稿一覧', articles_path %>
 

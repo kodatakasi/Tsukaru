@@ -16,7 +16,7 @@ RSpec.describe Article, type: :system do
   end
 
   describe '投稿一覧画面' do
-    context 'ログインした場合'
+    context 'ログインした場合' do
       it '作成済みの投稿が表示されること' do
         expect(page).to have_content 'MyString'
     end
@@ -26,6 +26,7 @@ RSpec.describe Article, type: :system do
         expect(page).to have_no_content 'MyString'
         expect(page).to have_content 'SecondTitle'
       end
+    end
   end
 
   describe '投稿登録画面' do
@@ -63,10 +64,20 @@ RSpec.describe Article, type: :system do
   end
 
   describe '投稿詳細画面' do
-    context '任意の投稿詳細画面に遷移した場合'
-      it '該当投稿の内容が表示されたページに遷移すること' do
-        click_link '記事を読む', match: :first
-        expect(page).to have_content 'SecondContent'
+    it '該当投稿の内容が表示されたページに遷移すること' do
+      click_link '記事を読む', match: :first
+      expect(page).to have_content 'SecondContent'
+    end
+    it '投稿した内容の編集ができる' do
+      click_link '編集する', match: :first
+      fill_in('article_titile', with: 'change')
+      click_button '投稿する'
+      expect(page).to have_content '編集しました！'
+      expect(page).to have_content 'change'
+    end
+    it '投稿した記事の削除ができる' do
+      click_link '編集する', match: :first
+
     end
     it 'お気に入り登録できる' do
       click_link '記事を読む', match: :first

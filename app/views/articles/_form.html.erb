@@ -13,16 +13,16 @@
 
   <%= f.fields_for :onsen do |onsen_form| %>
     <div class="field">
-      <%= onsen_form.hidden_field :name, value: @onsen.name %>
+      <%= onsen_form.hidden_field :name, value: @article.onsen.name %>
     </div>
     <div class="field">
-      <%= onsen_form.hidden_field :prefectures, value: @onsen.prefectures %>
+      <%= onsen_form.hidden_field :prefectures, value: @article.onsen.prefectures %>
     </div>
     <div class="field">
-      <%= onsen_form.hidden_field :quality, value: @onsen.quality %>
+      <%= onsen_form.hidden_field :quality, value: @article.onsen.quality %>
     </div>
     <div class="field">
-      <%= onsen_form.hidden_field :infomation, value: @onsen.infomation %>
+      <%= onsen_form.hidden_field :infomation, value: @article.onsen.infomation %>
     </div>
   <% end %>
 
@@ -42,6 +42,6 @@
     <%= f.label :content %>
     <%= f.text_area :content ,class: "textarea", placeholder: "温泉体験", rows: "10" %>
   </div>
-  <%= f.submit "投稿する", class: "button is-info", id: "create-content"%>
+  <%= f.submit "投稿する", class: "button is-info", id: "create-content" %>
 <% end %>
 <%= link_to '一覧ページ', articles_path %>
