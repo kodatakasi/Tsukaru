@@ -4,8 +4,9 @@ RSpec.describe Article, type: :system do
   before do
     user = FactoryBot.create(:user)
     article = FactoryBot.create(:article, user: user)
-
+    second_article = FactoryBot.create(:second_article, user: user)
     onsen = FactoryBot.create(:onsen, article: article)
+    second_onsen = FactoryBot.create(:second_onsen, article: second_article)
     label = FactoryBot.create(:label)
     visit root_path
     click_link 'ログイン'
@@ -20,10 +21,10 @@ RSpec.describe Article, type: :system do
         expect(page).to have_content 'MyString'
     end
       it '記事の内容で検索ができる' do
-        fill_in('q_content_cont', with: 'second_content')
-        click_on '#search'
+        fill_in('q_content_cont', with: 'SecondContent')
+        click_button 'search'
         expect(page).to have_no_content 'MyString'
-        expect(page).to have_no_content 'SecondTitle'
+        expect(page).to have_content 'SecondTitle'
       end
   end
 
@@ -64,18 +65,18 @@ RSpec.describe Article, type: :system do
   describe '投稿詳細画面' do
     context '任意の投稿詳細画面に遷移した場合'
       it '該当投稿の内容が表示されたページに遷移すること' do
-        click_link '記事を読む'
-        expect(page).to have_content 'MyText'
+        click_link '記事を読む', match: :first
+        expect(page).to have_content 'SecondContent'
     end
     it 'お気に入り登録できる' do
-      click_link '記事を読む'
+      click_link '記事を読む', match: :first
       click_link 'お気に入り登録する'
       expect(page).to have_content 'お気に入り登録しました'
     end
     it 'お気に入りした記事を解除できる' do
-      click_link '記事を読む'
+      click_link '記事を読む', match: :first
       click_link 'お気に入り登録する'
-      click_link '記事を読む'
+      click_link '記事を読む', match: :first
       click_link 'お気に入り解除する'
       expect(page).to have_content 'お気に入り解除しました'
     end

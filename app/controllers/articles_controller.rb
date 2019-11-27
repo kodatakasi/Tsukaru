@@ -23,7 +23,7 @@ class ArticlesController < ApplicationController
         puts "OMG!! #{code} #{message}"
       end
     else
-      @articles = Article.page(params[:page]).per(10)
+      @articles = Article.all.page(params[:page]).per(10)
     end
   end
 

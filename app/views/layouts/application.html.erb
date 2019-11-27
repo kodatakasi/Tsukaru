@@ -25,14 +25,14 @@
             <li><%= link_to 'ユーザー一覧', users_path if user_signed_in? %></li>
             <li><%= link_to "記事一覧", articles_path %></li>
             <div class="searchbox field has-addons">
-            <div class="control">
-              <%= search_form_for @search, url: articles_path do |f| %>
-                <%= f.text_field :content_cont ,placeholder: '記事を検索', class: 'input' %>
-            </div>
-                <div class="control" id='search'>
-                <%= f.submit ("検索") , class: 'search-btn button is-static' %>
-                </div>
-              <% end %>
+              <div class="control">
+                <%= search_form_for @search, url: articles_path do |f| %>
+                  <%= f.text_field :content_cont ,placeholder: '記事を検索', class: 'input' %>
+              </div>
+              <div class="control">
+                  <%= f.submit ("検索") , class: 'button is-link is-inverted is-outlined', id: 'search' %>
+                <% end %>
+              </div>
             </div>
           </ul>
         </div>
