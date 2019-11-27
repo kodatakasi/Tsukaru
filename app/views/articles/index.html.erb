@@ -24,7 +24,7 @@
                   <div class="media-left">
                     <figure>
                       <% if article.user.image.attached? %>
-                        <%= image_tag(article.user.image, class: 'profile-image') %>
+                        <%= image_tag(article.user.image, width: 96, class: 'profile-image') %>
                       <% else %>
                         <%= image_tag('blank-profile-picture-973460__480.png', width: 96, class: 'profile-image') %>
                       <% end %>

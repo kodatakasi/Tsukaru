@@ -70,14 +70,17 @@ RSpec.describe Article, type: :system do
     end
     it '投稿した内容の編集ができる' do
       click_link '編集する', match: :first
-      fill_in('article_titile', with: 'change')
+      fill_in('article_title', with: 'change')
       click_button '投稿する'
       expect(page).to have_content '編集しました！'
       expect(page).to have_content 'change'
     end
     it '投稿した記事の削除ができる' do
       click_link '編集する', match: :first
-
+      click_link '投稿を削除する'
+      page.driver.browser.switch_to.alert.accept
+      expect(page).to have_content '削除しました！'
+      expect(page).to have_no_content 'SecondTitle'
     end
     it 'お気に入り登録できる' do
       click_link '記事を読む', match: :first
