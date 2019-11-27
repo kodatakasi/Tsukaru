@@ -66,6 +66,7 @@ class ArticlesController < ApplicationController
   end
 
   def edit
+    @onsen = @article.onsen
   end
 
   def update

@@ -5,6 +5,14 @@
 <div class="main-contents column is-three-fifths">
   <div class="box">
     <h1>編集画面</h1>
+      <%= @onsen.name %>
+      <br>
+      <%= @onsen.prefectures %>
+      <br>
+      <%= @onsen.quality %>
+      <br>
+      <%= @onsen.infomation %>
+      <br>
     <%= render 'form' %>
     <%= link_to '投稿を削除する', article_path(@article), method: :delete, data: { confirm: '本当に削除していいですか？' }, class: '' if @article.user.id == current_user.id %>
   </div>

@@ -13,16 +13,16 @@
 
   <%= f.fields_for :onsen do |onsen_form| %>
     <div class="field">
-      <%= onsen_form.hidden_field :name, value: @article.onsen.name %>
+      <%= onsen_form.hidden_field :name, value: @onsen.name %>
     </div>
     <div class="field">
-      <%= onsen_form.hidden_field :prefectures, value: @article.onsen.prefectures %>
+      <%= onsen_form.hidden_field :prefectures, value: @onsen.prefectures %>
     </div>
     <div class="field">
-      <%= onsen_form.hidden_field :quality, value: @article.onsen.quality %>
+      <%= onsen_form.hidden_field :quality, value: @onsen.quality %>
     </div>
     <div class="field">
-      <%= onsen_form.hidden_field :infomation, value: @article.onsen.infomation %>
+      <%= onsen_form.hidden_field :infomation, value: @onsen.infomation %>
     </div>
   <% end %>
 
