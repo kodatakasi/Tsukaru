@@ -5,7 +5,8 @@ class ApplicationController < ActionController::Base
 
 def set_search
   @search = Article.ransack(params[:q])
-  @search_articles = @search.result
+  @search.sorts = "created_at desc" if @search.sorts.empty?
+  @search_articles = @search.result.page(params[:page])
 end
 
   protected

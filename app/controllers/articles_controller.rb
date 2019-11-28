@@ -23,7 +23,7 @@ class ArticlesController < ApplicationController
         puts "OMG!! #{code} #{message}"
       end
     else
-      @search_articles = Article.order(created_at: "DESC").page(params[:page])
+      # @search_articles = Article.order(created_at: "DESC").page(params[:page])
     end
   end
 
