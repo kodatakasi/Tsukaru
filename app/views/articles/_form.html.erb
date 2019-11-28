@@ -1,6 +1,6 @@
 <%= form_with(model: @article, local: true) do |f| %>
   <% if @article.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation" class="errors">
       <h2><%= @article.errors.count %>件のエラーがあります。</h2>
       <ul>
 
