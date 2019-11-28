@@ -7,11 +7,11 @@ class ArticlesController < ApplicationController
 
   def index
     if params[:label_id].present?
-      @search_articles = Article.joins(:labels).where(labels: { id: params[:label_id] }).page(params[:page]).per(10)
+      @search_articles = Article.joins(:labels).where(labels: { id: params[:label_id] }).page(params[:page])
     elsif params[:like].present?
-    @search_articles = current_user.favorite_articles.page(params[:page]).per(10)
+      @search_articles = current_user.favorite_articles.page(params[:page])
     elsif params[:mine].present?
-    @search_articles = Article.where(user_id: current_user.id).page(params[:page]).per(10)
+      @search_articles = Article.where(user_id: current_user.id).page(params[:page])
     elsif params[:keyword].present?
       uri = URI.encode("https://app.rakuten.co.jp/services/api/Travel/KeywordHotelSearch/20170426?format=json&keyword=#{params[:keyword]}&applicationId=1059761295941689260")
       res = open(uri)
@@ -23,7 +23,7 @@ class ArticlesController < ApplicationController
         puts "OMG!! #{code} #{message}"
       end
     else
-      @articles = Article.all.page(params[:page]).per(10)
+      @search_articles = Article.order(created_at: "DESC").page(params[:page])
     end
   end
 

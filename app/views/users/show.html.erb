@@ -5,12 +5,15 @@
     <div class="column">
       <p><%= @user.name %>さんのプロフィール</p>
       <div class="box">
-        <h1><%= @user.name%></h1>
-        <%= image_tag @user.image, class: 'profile-image' if @user.image.attached? %>
+        <% if @user.image.attached? %>
+          <%= image_tag @user.image, class: 'profile-image' %>
+        <% else %>
+          <%= image_tag 'blank-profile-picture-973460__480.png', class: 'profile-image' %>
+        <% end %>
         <br>
-        <%= @user.email %>
-        <br>
-        <%= @user.profile %>
+        <p><%= @user.name%></p>
+        <p><%= @user.email %></p>
+        <p><%= @user.profile %></p>
       </div>
     </div>
 
@@ -21,7 +24,7 @@
           <tr class="box">
             <td class="article-name"><%= link_to article.user.name, user_path(article.user) %></td>
             <td class="article-title"><%= article.title %></td>
-            <td class="article-images"><%= link_to image_tag(article.picture, width: 200), article_path(article) if article.picture.attached? %></td>
+            <td class="article-images"><%= link_to image_tag(article.picture, class: 'profile-image'), article_path(article) if article.picture.attached? %></td>
             <% if user_signed_in? %>
               <td><%= link_to '詳細を確認する', article_path(article.id) %></td>
               <td><%= link_to "編集する", edit_article_path(article.id) %></td>

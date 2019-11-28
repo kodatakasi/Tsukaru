@@ -13,9 +13,9 @@
               <div class="card-image">
                 <figure class="image is-4by3">
                   <% if article.picture.attached? %>
-                    <%= link_to image_tag(article.picture, width: 200), article_path(article) %>
+                    <%= link_to image_tag(article.picture, width: 200), article %>
                   <% else %>
-                    <%= link_to image_tag("AME_ginzan02_TP_V.jpg", width: 200), article_path(article) %>
+                    <%= link_to image_tag("AME_ginzan02_TP_V.jpg", width: 200), article %>
                   <% end %>
                 </figure>
               </div>
@@ -31,7 +31,7 @@
                     </figure>
                   </div>
                   <div class="media-content">
-                    <p class="title is-6"><%= link_to article.user.name, user_path(article.user) %></p>
+                    <p class="title is-6"><%= link_to article.user.name, article.user %></p>
                     <p class="subtitle is-6"><%= article.user.email %></p>
                   </div>
                 </div>
@@ -61,6 +61,7 @@
       <% end %>
     </div>
 
+    <%= paginate @search_articles %>
 
 
     </div>

@@ -14,7 +14,7 @@
               <%= image_tag('blank-profile-picture-973460__480.png', width: 96, class: 'profile-image') %>
             <% end %>
           </figure>
-          <p><%= user.name %>さん</p>
+          <p><%= link_to user.name, user %>さん</p>
           <p><%= user.email %></p>
           <% unless current_user == user %>
             <%= render 'follow_form', user: user %>
@@ -23,4 +23,5 @@
       <% end %>
     </div>
   </div>
+  <%= paginate @users %>
 </div>

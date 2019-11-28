@@ -2,11 +2,11 @@
     <h2>ユーザー情報</h2>
     <div class="box">
     <% if user_signed_in? %>
-      <figure class="image is-128x128">
+      <figure>
         <% if current_user.image.attached? %>
-          <%= image_tag(current_user.image, width: 96, class: 'image is-rounded') %>
+          <%= image_tag(current_user.image, width: 96, class: 'profile-image') %>
         <% else %>
-          <%= image_tag('blank-profile-picture-973460__480.png', width: 96, class: 'image is-rounded') %>
+          <%= image_tag('blank-profile-picture-973460__480.png', width: 96, class: 'profile-image') %>
         <% end %>
       </figure>
         <p><%= current_user.name %></p>
@@ -18,8 +18,8 @@
         <%= link_to "お気に入り投稿#{current_user.favorites.count}件", articles_path(like: "true") %>
         <p>フォロー<%= current_user.following.count%> フォロワー<%= current_user.followers.count%></p>
       <% else %>
-        <figure class="image is-128x128">
-          <%= image_tag 'blank-profile-picture-973460__480.png', class: 'is-rounded'%>
+        <figure>
+          <%= image_tag 'blank-profile-picture-973460__480.png', class: 'profile-image'%>
         </figure>
         <p>ユーザー名</p>
         <p>自己紹介コメント</p>
