@@ -29,7 +29,7 @@ gem 'jquery-rails'
 gem 'kaminari'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
-gem 'aws-sdk-s3'
+gem "aws-sdk-s3", require: false
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
