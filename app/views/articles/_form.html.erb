@@ -36,7 +36,7 @@
   </div>
   <div class="article_image">
     <%= f.label :picture %>
-    <%= f.file_field :picture %>
+    <%= f.file_field :picture, accept: "image/png, image/jpeg, image/gif"%>
   </div>
   <div class="article_content control">
     <%= f.label :content %>
