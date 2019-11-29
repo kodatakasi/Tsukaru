@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: %i(show edit update destroy)
   before_action :authenticate_user!, only: %i(new edit update destroy create)
+  before_action :author, only: %i(edit update destroy)
   require "rexml/document"
   require "open-uri"
   require 'json'
@@ -14,21 +15,17 @@ class ArticlesController < ApplicationController
       @search_articles = Article.where(user_id: current_user.id).page(params[:page])
     elsif params[:keyword].present?
       uri = URI.encode("https://app.rakuten.co.jp/services/api/Travel/KeywordHotelSearch/20170426?format=json&keyword=#{params[:keyword]}&applicationId=1059761295941689260")
-      # binding.pry
       begin
         res = open(uri)
         code, message = res.status # res.status => ["200", "OK"]
         if code == '200'
           @result_hotel = ActiveSupport::JSON.decode res.read
-        # elsif code == '400'
-          # @result_hotel = nil
         end
       rescue => e
-        @result_hotel =nil
+        @result_hotel = nil
         @error = '検索結果がありません'
       end
     else
-      # @search_articles = Article.order(created_at: "DESC").page(params[:page])
     end
   end
 
