@@ -18,10 +18,12 @@
           <%= hotel["hotel"][0]["hotelBasicInfo"]["hotelSpecial"] %>
           <br>
           <p>利用した人の声↓</p>
-          <%= hotel["hotel"][0]["hotelBasicInfo"]["userReview"] %>
+          <%= hotel["hotel"][0]["hotelBasicInfo"]["userReview"].to_s.html_safe %>
           <br>
         </div>
       <% end %>
+        <% else %>
+          <p><%= @error %></p>
     <% end %>
 
   <!-- Rakuten Web Services Attribution Snippet FROM HERE -->

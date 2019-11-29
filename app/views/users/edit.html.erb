@@ -1,7 +1,18 @@
 <div class="columns is-centered">
-<div class="column is-half has-background-light">
+
+  <div class="column is-half box">
     <h1>プロフィール編集</h1>
     <%= form_with(model: @user, local: true) do |form| %>
+      <% if @user.errors.any? %>
+        <div id="error_explanation" class="errors">
+          <h2><%= @user.errors.count %>件のエラーがあります。</h2>
+            <ul>
+              <% @user.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
 
       <div class="field">
         <%= form.label :name %><br />
@@ -29,6 +40,6 @@
     <%= link_to 'ユーザー情報を削除する', user_path(@user.id), method: :delete, data: { confirm: '本当に削除していいですか？' } if @user.id == current_user.id %>
     <br>
     <%= link_to '投稿一覧', articles_path %>
-
   </div>
+
 </div>
