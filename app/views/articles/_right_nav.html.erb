@@ -11,7 +11,7 @@
     <% if @result_hotel.present? %>
       <% @result_hotel["hotels"].each do |hotel| %>
         <div class="column">
-          <%= link_to hotel["hotel"][0]["hotelBasicInfo"]["hotelName"], hotel["hotel"][0]["hotelBasicInfo"]["hotelInformationUrl"] %>
+          <%= link_to hotel["hotel"][0]["hotelBasicInfo"]["hotelName"], hotel["hotel"][0]["hotelBasicInfo"]["hotelInformationUrl"], target: :_blank %>
           <br>
           <img src="<%= hotel["hotel"][0]["hotelBasicInfo"]["hotelImageUrl"] %>" alt="<%= hotel["hotel"][0]["hotelBasicInfo"]["roomThumbnailUrl"] %>">
           <br>

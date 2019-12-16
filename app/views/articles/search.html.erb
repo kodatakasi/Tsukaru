@@ -13,7 +13,7 @@
           <% @result_onsen["Results"]["Onsen"].each do |onsen| %>
             <div class="box">
               <% if onsen.present? %>
-                <%= link_to onsen["OnsenName"], onsen["OnsenAreaURL"] %>
+                <%= link_to onsen["OnsenName"], onsen["OnsenAreaURL"], target: :_blank %>
                 <br>
                 <%= onsen["Area"]["Region"] %>
                 <br>
