@@ -4,26 +4,7 @@ class ArticlesController < ApplicationController
   before_action :author, only: %i(edit update destroy)
 
   def index
-    if params[:label_id].present?
-      @search_articles = Article.joins(:labels).where(labels: { id: params[:label_id] }).page(params[:page])
-    elsif params[:like].present?
-      @search_articles = current_user.favorite_articles.page(params[:page])
-    elsif params[:mine].present?
-      @search_articles = Article.where(user_id: current_user.id).page(params[:page])
-    elsif params[:keyword].present?
-      uri = URI.encode("https://app.rakuten.co.jp/services/api/Travel/KeywordHotelSearch/20170426?format=json&keyword=#{params[:keyword]}&applicationId=1059761295941689260")
-      begin
-        res = open(uri)
-        code, message = res.status # res.status => ["200", "OK"]
-        if code == '200'
-          @result_hotel = ActiveSupport::JSON.decode res.read
-        end
-      rescue => e
-        @result_hotel = nil
-        @error = '検索結果がありません'
-      end
-    else
-    end
+    @search_articles = Article.display_article(params, current_user)
   end
 
   def search

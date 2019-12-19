@@ -4,4 +4,6 @@ class Onsen < ApplicationRecord
   validates :prefectures, presence: true, length: { maximum: 10 }
   validates :quality, presence: true, length: { maximum: 20 }
   validates :infomation, length: { maximum: 2000 }
+
+  
 end
