@@ -2,9 +2,6 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: %i(show edit update destroy)
   before_action :authenticate_user!, only: %i(new edit update destroy create)
   before_action :author, only: %i(edit update destroy)
-  require "rexml/document"
-  require "open-uri"
-  require 'json'
 
   def index
     if params[:label_id].present?
@@ -36,12 +33,14 @@ class ArticlesController < ApplicationController
       uri = ("http://jws.jalan.net/APICommon/OnsenSearch/V1/?key=leo16e3956ee01&pref=#{params[:prefectures]}&onsen_q=#{params[:number]}&count=60&xml_ptn=1")
       res = open(uri)
       code, message = res.status # res.status => ["200", "OK"]
-      
-      if code == '200'
-        doc = REXML::Document.new(open(uri).read)
-        @result_onsen = Hash.from_xml(doc.to_s)
-      else
-        puts "OMG!! #{code} #{message}"
+      begin
+        if code == '200'
+          doc = REXML::Document.new(open(uri).read)
+          @result_onsen = Hash.from_xml(doc.to_s)
+        end
+      rescue => e
+        @result_onsen = nil
+        @error = '検索結果がありません'
       end
     end
   end
