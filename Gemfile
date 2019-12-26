@@ -5,7 +5,7 @@ ruby '2.6.4'
 
 gem 'rails', '~> 5.2.3'
 gem 'pg', '>= 0.18', '< 2.0'
-gem 'puma', '~> 3.11'
+gem "puma", ">= 3.12.2"
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 # gem 'mini_racer', platforms: :ruby
@@ -17,7 +17,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'devise'
-gem 'omniauth'
+gem 'omniauth', '>= 1.3.5'
 gem 'omniauth-facebook', '~> 4.0.0'
 gem 'omniauth-line'
 gem 'carrierwave'
