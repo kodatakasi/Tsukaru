@@ -3,6 +3,10 @@ class ArticlesController < ApplicationController
   before_action :authenticate_user!, only: %i(new edit update destroy create)
   before_action :author, only: %i(edit update destroy)
 
+  require "rexml/document"
+  require "open-uri"
+  require 'json'
+
   def index
     @search_articles = Article.display_article(params, current_user)
     if params[:keyword].present?
