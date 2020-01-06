@@ -5,6 +5,19 @@ class ArticlesController < ApplicationController
 
   def index
     @search_articles = Article.display_article(params, current_user)
+    if params[:keyword].present?
+      uri = URI.encode("https://app.rakuten.co.jp/services/api/Travel/KeywordHotelSearch/20170426?format=json&keyword=#{params[:keyword]}&applicationId=1059761295941689260")
+      begin
+        res = open(uri)
+        code, message = res.status # res.status => ["200", "OK"]
+        if code == '200'
+          @result_hotel = ActiveSupport::JSON.decode res.read
+        end
+      rescue => e
+        @result_hotel = nil
+        @error = '検索結果がありません'
+      end
+    end
   end
 
   def search
