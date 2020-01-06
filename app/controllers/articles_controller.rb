@@ -36,6 +36,8 @@ class ArticlesController < ApplicationController
         @result_onsen = nil
         @error = '検索結果がありません'
       end
+      p code
+      p @result_onsen
     end
   end
 
