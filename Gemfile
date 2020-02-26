@@ -16,8 +16,9 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 # gem 'capistrano-rails', group: :development
 gem 'bootsnap', '>= 1.1.0', require: false
+gem "nokogiri", ">= 1.10.8"
 gem 'devise'
-gem 'omniauth', '>= 1.3.5'
+gem 'omniauth-rails_csrf_protection'
 gem 'omniauth-facebook', '~> 4.0.0'
 gem 'omniauth-line'
 gem 'carrierwave'
