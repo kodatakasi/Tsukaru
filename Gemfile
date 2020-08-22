@@ -5,7 +5,7 @@ ruby '2.6.4'
 
 gem 'rails', '~> 5.2.3'
 gem 'pg', '>= 0.18', '< 2.0'
-gem "puma", ">= 3.12.2"
+gem "puma", ">= 4.3.5"
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 # gem 'mini_racer', platforms: :ruby
@@ -27,10 +27,18 @@ gem 'ransack'
 gem 'bulma-rails'
 gem 'i18n'
 gem 'jquery-rails'
-gem 'kaminari'
+gem "kaminari", ">= 1.2.1"
 gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem "aws-sdk-s3", require: false
+gem "json", ">= 2.3.0"
+gem "rack", ">= 2.2.3"
+gem "websocket-extensions", ">= 0.1.5"
+gem "activesupport", ">= 5.2.4.3"
+gem "actionpack", ">= 5.2.4.3"
+gem "activestorage", ">= 5.2.4.3"
+gem "actionview", ">= 5.2.4.3"
+
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
