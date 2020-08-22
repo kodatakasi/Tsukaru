@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.4'
-
 gem 'rails', '~> 5.2.3'
 gem 'pg', '>= 0.18', '< 2.0'
 gem "puma", ">= 4.3.5"
@@ -31,10 +30,10 @@ gem "kaminari", ">= 1.2.1"
 gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem "aws-sdk-s3", require: false
-gem "json", ">= 2.3.0"
-gem "rack", ">= 2.2.3"
-gem "websocket-extensions", ">= 0.1.5"
-gem "activesupport", ">= 5.2.4.3"
+gem "json"
+gem "rack"
+gem "websocket-extensions"
+gem "activesupport"
 gem "actionpack", ">= 5.2.4.3"
 gem "activestorage", ">= 5.2.4.3"
 gem "actionview", ">= 5.2.4.3"
